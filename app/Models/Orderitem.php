@@ -19,4 +19,7 @@ class Orderitem extends Model
         'coupon_code',
         'address'
     ];
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }

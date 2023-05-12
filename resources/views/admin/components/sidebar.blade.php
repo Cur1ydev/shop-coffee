@@ -2,7 +2,7 @@
     <div id="sidebarEffect"></div>
     <div>
         <div class="logo-wrapper logo-wrapper-center">
-            <a href="index.html" data-bs-original-title="" title="">
+            <a href="{{route('admin.dashboard')}}" data-bs-original-title="" title="">
                 <img class="img-fluid for-white" src="{{asset('admin/assets/images/logo/full-white.png')}}" alt="logo">
             </a>
             <div class="back-btn">
@@ -42,11 +42,11 @@
                         </a>
                         <ul class="sidebar-submenu">
                             <li>
-                                <a href="products.html">Prodcts</a>
+                                <a href="{{route('admin.product.list')}}">Products</a>
                             </li>
 
                             <li>
-                                <a href="add-new-product.html">Add New Products</a>
+                                <a href="{{route('admin.product.add')}}">Add New Products</a>
                             </li>
                         </ul>
                     </li>

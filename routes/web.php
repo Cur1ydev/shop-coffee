@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Product\AdminProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.dashboard.index');
 });
-Route::prefix('admin')->name('admin.')->group(function (){
-    Route::get('/');
+//Route::get('abcd',[AdminProductController::class,'abcd']);
+Route::prefix('/adminn')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return view('admin.dashboard.index');
+    })->name('dashboard');
+//    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::prefix('/product')->name('product.')->group(function () {
+        Route::get('/list',[AdminProductController::class,'List'])->name('list');
+        Route::get('/add',[AdminProductController::class,'Add'])->name('add');
+    });
 });
