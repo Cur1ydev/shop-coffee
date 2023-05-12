@@ -11,20 +11,42 @@ class ProductRepository implements ProductInterface
     {
         return Product::with('category')->get();
     }
+
     public function GetById($id)
     {
-        // TODO: Implement GetById() method.
+        return Product::find($id);
     }
+
     public function Create(array $data)
     {
-        // TODO: Implement Create() method.
+        $product = new Product();
+        $product->name = $data['name'];
+        $product->category_id = $data['category_id'];
+        $product->slug = $data['slug'];
+        $product->image = $data['image'];
+        $product->price = $data['price'];
+        $product->discount = $data['discount'];
+        $product->status = $data['status'];
+        $product->description = $data['description'];
+        return $product->save();
     }
+
     public function Update(array $data, $id)
     {
-        // TODO: Implement Update() method.
+        return Product::find($id)->update([
+            'name' => $data['name'],
+            'category_id' => $data['category_id'],
+            'slug' => $data['slug'],
+            'image' => $data['image'],
+            'price' => $data['price'],
+            'discount' => $data['discount'],
+            'status' => $data['status'],
+            'description' => $data['description']
+        ]);
     }
+
     public function Delete($id)
     {
-        // TODO: Implement Delete() method.
+        return Product::find($id)->delete();
     }
 }

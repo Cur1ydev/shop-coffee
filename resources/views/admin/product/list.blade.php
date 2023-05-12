@@ -17,7 +17,8 @@
                                             <a href="javascript:void(0)">Export</a>
                                         </li>
                                         <li>
-                                            <a class="btn btn-solid" href="{{route('admin.product.add')}}">Thêm sản phẩm</a>
+                                            <a class="btn btn-solid" href="{{route('admin.product.add')}}">Thêm sản
+                                                phẩm</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -67,14 +68,13 @@
                                                 <td>
                                                     <ul>
                                                         <li>
-                                                            <a href="javascript:void(0)">
+                                                            <a href="{{route('admin.product.update',['id'=>$value->id])}}">
                                                                 <i class="ri-pencil-line"></i>
                                                             </a>
                                                         </li>
 
                                                         <li>
-                                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                               data-bs-target="#exampleModalToggle">
+                                                            <a href="{{route('admin.product.delete',['id'=>$value->id])}}" >
                                                                 <i class="ri-delete-bin-line"></i>
                                                             </a>
                                                         </li>
