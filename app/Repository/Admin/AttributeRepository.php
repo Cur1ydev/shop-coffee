@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Admin;
 
-use App\Interface\AttributeInterface;
+use App\Interface\Admin\AttributeInterface;
 use App\Models\Attribute;
 
 class AttributeRepository implements AttributeInterface

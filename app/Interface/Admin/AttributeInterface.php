@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Interface;
+namespace App\Interface\Admin;
 
-interface ProductInterface
+interface AttributeInterface
 {
     public function List();
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Attribute;
 
 use App\Http\Controllers\Controller;
-use App\Interface\AttributeInterface;
+use App\Interface\Admin\AttributeInterface;
 use Illuminate\Http\Request;
 
 class AdminAttributeController extends Controller

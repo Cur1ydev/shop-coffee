@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
-use App\Interface\ProductInterface;
+use App\Interface\Admin\ProductInterface;
 use App\Models\Category;
-use App\Models\Product;
-use App\Repository\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 

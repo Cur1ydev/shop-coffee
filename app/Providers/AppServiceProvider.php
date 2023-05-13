@@ -2,13 +2,17 @@
 
 namespace App\Providers;
 
-use App\Interface\AttributeInterface;
-use App\Interface\CategoryInterface;
-use App\Repository\AttributeRepository;
-use App\Repository\CategoryRepository;
+use App\Interface\Admin\AttributeInterface;
+use App\Interface\Admin\CategoryInterface;
+use App\Interface\Admin\ProductInterface;
+use App\Interface\Client\HomeInterface;
+use App\Interface\Client\MenuInterface;
+use App\Repository\Admin\AttributeRepository;
+use App\Repository\Admin\CategoryRepository;
+use App\Repository\Admin\ProductRepository;
+use App\Repository\Client\HomeRepository;
+use App\Repository\Client\MenuRepository;
 use Illuminate\Support\ServiceProvider;
-use App\Repository\ProductRepository;
-use App\Interface\ProductInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,9 +21,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(ProductInterface::class,ProductRepository::class);
-        $this->app->bind(AttributeInterface::class,AttributeRepository::class);
-        $this->app->bind(CategoryInterface::class,CategoryRepository::class);
+        //Admin
+        $this->app->bind(ProductInterface::class, ProductRepository::class);
+        $this->app->bind(AttributeInterface::class, AttributeRepository::class);
+        $this->app->bind(CategoryInterface::class, CategoryRepository::class);
+
+        //Client
+        $this->app->bind(HomeInterface::class, HomeRepository::class);
+        $this->app->bind(MenuInterface::class, MenuRepository::class);
     }
 
     /**

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Admin;
 
-use App\Interface\CategoryInterface;
+use App\Interface\Admin\CategoryInterface;
 use App\Models\Category;
 
 class CategoryRepository implements CategoryInterface
