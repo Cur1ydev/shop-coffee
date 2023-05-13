@@ -11,20 +11,30 @@ class AttributeRepository implements AttributeInterface
     {
         return Attribute::all();
     }
+
     public function GetById($id)
     {
-        // TODO: Implement GetById() method.
+        return Attribute::find($id);
     }
+
     public function Create(array $data)
     {
-        // TODO: Implement Create() method.
+        $attribute = new Attribute();
+        $attribute->name = $data['name'];
+        $attribute->value = $data['value'];
+        return $attribute->save();
     }
+
     public function Update(array $data, $id)
     {
-        // TODO: Implement Update() method.
+        return Attribute::find($id)->update([
+            'name' => $data['name'],
+            'value' => $data['value']
+        ]);
     }
+
     public function Delete($id)
     {
-        // TODO: Implement Delete() method.
+        return Attribute::find($id)->delete();
     }
 }

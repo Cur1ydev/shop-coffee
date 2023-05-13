@@ -8,10 +8,10 @@
                     <div class="card card-table">
                         <div class="card-body">
                             <div class="title-header option-title">
-                                <h5>All Attributes</h5>
+                                <h5>Danh sách Attributes</h5>
                                 <form class="d-inline-flex">
-                                    <a href="add-new-category.html" class="align-items-center btn btn-theme d-flex">
-                                        <i data-feather="plus-square"></i>Add New
+                                    <a href="{{route('admin.attribute.add')}}" class="align-items-center btn btn-theme d-flex">
+                                        <i data-feather="plus-square"></i>Thêm mới
                                     </a>
                                 </form>
                             </div>
@@ -36,14 +36,13 @@
                                         <td>
                                             <ul>
                                                 <li>
-                                                    <a href="javascript:void(0)">
+                                                    <a href="{{route('admin.attribute.update',['id'=>$value->id])}}">
                                                         <i class="ri-pencil-line"></i>
                                                     </a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                       data-bs-target="#exampleModalToggle">
+                                                    <a href="{{route('admin.attribute.delete',['id'=>$value->id])}}">
                                                         <i class="ri-delete-bin-line"></i>
                                                     </a>
                                                 </li>

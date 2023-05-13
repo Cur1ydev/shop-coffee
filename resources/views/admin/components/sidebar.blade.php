@@ -58,11 +58,11 @@
                         </a>
                         <ul class="sidebar-submenu">
                             <li>
-                                <a href="category.html">Category List</a>
+                                <a href="{{route('admin.category.list')}}">Category List</a>
                             </li>
 
                             <li>
-                                <a href="add-new-category.html">Add New Category</a>
+                                <a href="{{route('admin.category.add')}}">Add New Category</a>
                             </li>
                         </ul>
                     </li>
@@ -78,7 +78,7 @@
                             </li>
 
                             <li>
-                                <a href="add-new-attributes.html">Add Attributes</a>
+                                <a href="{{route('admin.attribute.add')}}">Add Attributes</a>
                             </li>
                         </ul>
                     </li>
