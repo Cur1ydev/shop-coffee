@@ -57,7 +57,7 @@
                                 <img src="{{$value->image}}" alt="">
                             </div>
                             <div class="content">
-                                <h3 class="title border-effect"><a href="#0">{{$value->name}}</a></h3>
+                                <h3 class="title border-effect"><a href="{{route('client.product',['slug'=>$value->slug])}}">{{$value->name}}</a></h3>
                                 <span class="price">{{number_format($value->price)}} đ</span>
                             </div>
                         </div>

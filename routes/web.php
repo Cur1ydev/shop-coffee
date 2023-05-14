@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Attribute\AdminAttributeController;
 use App\Http\Controllers\Admin\Category\AdminCategoryController;
 use App\Http\Controllers\Client\Home\ClientHomeController;
 use App\Http\Controllers\Client\Menu\ClientMenuController;
+use App\Http\Controllers\Client\ProductDetail\ClientProductDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +19,9 @@ use App\Http\Controllers\Client\Menu\ClientMenuController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//Route::get('/abcd',function (){
-//    $product=\App\Models\Product::with('attribute')->get();
-////    dd($product);
-//    foreach ($product as $item) {
-//        dd($item);
-//    }
-//});
-
-Route::get('/',[ClientHomeController::class,'index'])->name('client.home');
-Route::get('/menu',[ClientMenuController::class,'Menu'])->name('client.menu');
+Route::get('/', [ClientHomeController::class, 'index'])->name('client.home');
+Route::get('/menu', [ClientMenuController::class, 'Menu'])->name('client.menu');
+Route::get('/product/{slug}', [ClientProductDetailController::class, 'ProductDetail'])->name('client.product');
 //Route::get('abcd',[AdminProductController::class,'abcd']);
 Route::prefix('/adminn')->name('admin.')->group(function () {
     Route::get('/', function () {

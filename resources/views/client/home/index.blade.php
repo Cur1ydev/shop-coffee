@@ -145,7 +145,7 @@
                             </div>
                             <div class="popular-menu__content text-center">
                                 <h2 class="title">
-                                    <a href="product-details.html">{{$value->name}}</a>
+                                    <a href="{{route('client.product',['slug' => $value->slug])}}">{{$value->name}}</a>
                                 </h2>
                                 <div class="pp__price d-flex align-items-center justify-content-center">
                                     <h6 class="label">Price - </h6>

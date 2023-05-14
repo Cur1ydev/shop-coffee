@@ -7,11 +7,13 @@ use App\Interface\Admin\CategoryInterface;
 use App\Interface\Admin\ProductInterface;
 use App\Interface\Client\HomeInterface;
 use App\Interface\Client\MenuInterface;
+use App\Interface\Client\ProductDetailInterface;
 use App\Repository\Admin\AttributeRepository;
 use App\Repository\Admin\CategoryRepository;
 use App\Repository\Admin\ProductRepository;
 use App\Repository\Client\HomeRepository;
 use App\Repository\Client\MenuRepository;
+use App\Repository\Client\ProductDetailRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         //Client
         $this->app->bind(HomeInterface::class, HomeRepository::class);
         $this->app->bind(MenuInterface::class, MenuRepository::class);
+        $this->app->bind(ProductDetailInterface::class,ProductDetailRepository::class);
     }
 
     /**

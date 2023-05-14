@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{asset('client/assets/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('client/assets/css/jquery-ui.css')}}">
     <link rel="stylesheet" href="{{asset('client/assets/css/main.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
