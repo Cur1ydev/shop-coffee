@@ -53,7 +53,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if(isset($cart))
+                                    @if(isset($cart)&&$cart!=null)
                                         @foreach($cart as $number => $value)
                                             <tr>
                                                 <td class="product-thumbnail">
@@ -108,11 +108,11 @@
                                                 @endif
                                             </tr>
                                         @endforeach
-                                        @if(!isset($cart)||count($cart)==0)
-                                            <tr>
-                                                <td align="center" colspan="5">Danh sách giỏ hàng hiện đang trống</td>
-                                            </tr>
-                                        @endif
+                                    @else
+                                        <tr>
+                                            <td align="center" colspan="5">Danh sách giỏ hàng hiện đang trống</td>
+                                        </tr>
+
                                     @endif
                                     </tbody>
                                 </table>
@@ -181,11 +181,11 @@
                     window.location.href = "{{route('client.deleteSS')}}"
                 }
             })
-            let allTotal =0;
+            let allTotal = 0;
             var allPrice = document.querySelectorAll('.amount_total');
             allPrice.forEach((item) => {
                 let total = parseInt(item.innerHTML.replace(/,/g, ''));
-                allTotal +=total;
+                allTotal += total;
             })
             document.querySelector('#total_order').innerHTML = allTotal.toLocaleString() + "đ";
             // document.querySelector('#shipping_fee').innerHTML = '18,000'.toLocaleString() + "đ";

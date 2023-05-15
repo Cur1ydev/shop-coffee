@@ -9,6 +9,7 @@ use App\Http\Controllers\Client\Home\ClientHomeController;
 use App\Http\Controllers\Client\Menu\ClientMenuController;
 use App\Http\Controllers\Client\ProductDetail\ClientProductDetailController;
 use App\Http\Controllers\Client\Cart\ClientCartController;
+use App\Http\Controllers\Client\Shop\ClientShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,10 @@ Route::get('/cart', [ClientCartController::class, 'index'])->name('client.cart')
 Route::post('/cart', [ClientCartController::class, 'handleAddtocart'])->name('client.addtocart');
 Route::get('/deleteItemCart-{id}',[ClientCartController::class,'deleteItemCart'])->name('client.deleteItemCart');
 Route::get('/delSs' , [ClientCartController::class, 'DeleteAllSession'])->name('client.deleteSS');
-//Route::get('abcd',[AdminProductController::class,'abcd']);
+Route::get('/shop',[ClientShopController::class,'index'])->name('client.shop');
+Route::get('abcd',function (){
+    dd(session()->get('cart'));
+});
 Route::prefix('/adminn')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard.index');

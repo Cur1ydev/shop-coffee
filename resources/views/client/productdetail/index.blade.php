@@ -548,7 +548,7 @@
                 const attribute = {
                     size: dtSize,
                     topping: array_topping
-                }
+                };
                 const quantity = $('#quantity').val();
                 const id = {{$getAll->id}};
                 $.ajax({
@@ -565,6 +565,7 @@
                     },
                     success: function (data) {
                         alert(data.success);
+                        // console.log(data.data)
                         window.location.href = '{{route('client.cart')}}';
                     },
                     error: function (error) {

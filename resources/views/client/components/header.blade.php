@@ -57,13 +57,7 @@
                                         <li><a href="gallery.html">Gallery</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="shop.html">Shop</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop.html">Shop</a></li>
-                                        <li><a href="product-details.html">Shop Details</a></li>
-                                        <li><a href="cart.html">Shop Cart</a></li>
-                                        <li><a href="checkout.html">Shop Checkout</a></li>
-                                    </ul>
+                                <li><a href="{{route('client.shop')}}">Shop</a>
                                 </li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
@@ -89,7 +83,7 @@
                         </div>
                         <div class="cart cart-trigger item position-relative">
                             <i class="fa fa-shopping-basket"></i>
-                            <span class="cart__count">3</span>
+                            <span class="cart__count">{{session()->get('cart')==null?0:count(session()->get('cart'))}}</span>
                         </div>
                     </div>
                 </div>

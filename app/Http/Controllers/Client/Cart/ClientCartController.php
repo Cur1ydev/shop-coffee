@@ -36,18 +36,10 @@ class ClientCartController extends Controller
         }
         $found = false;
         foreach ($cart as &$value) {
-            if (count($value['attribute']['topping'])>0){
-                if ($value['id'] == $data['id'] && $value['name_product'] == $data['name_product'] && $value['image'] == $data['image'] && $value['attribute']['size'] == $data['attribute']['size'] && $value['attribute']['topping'] == $data['attribute']['topping']) {
-                    $value['quantity'] += $data['quantity'];
-                    $found = true;
-                    break;
-                }
-            }else{
-                if ($value['id'] == $data['id'] && $value['name_product'] == $data['name_product'] && $value['image'] == $data['image'] && $value['attribute']['size'] == $data['attribute']['size']) {
-                    $value['quantity'] += $data['quantity'];
-                    $found = true;
-                    break;
-                }
+            if ($cart == $data) {
+                $value['quantity'] += $data['quantity'];
+                $found = true;
+                break;
             }
         }
         unset($value);
@@ -55,7 +47,7 @@ class ClientCartController extends Controller
             $cart[] = $data;
         }
         session()->put('cart', $cart);
-        return response()->json(['success' => "Thêm sản phẩm vào giỏ hàng thành công"]);
+        return response()->json(['success' => "Thêm sản phẩm vào giỏ hàng thành công", 'data' => $cart]);
     }
 
     public function DeleteAllSession()
@@ -68,7 +60,7 @@ class ClientCartController extends Controller
     {
         $cart = session()->get('cart');
         unset($cart[$request->id]);
-        session()->put('cart',$cart);
-        return back()->with('deleteItem','Xóa sản phẩm thành công');
+        session()->put('cart', $cart);
+        return back()->with('deleteItem', 'Xóa sản phẩm thành công');
     }
 }

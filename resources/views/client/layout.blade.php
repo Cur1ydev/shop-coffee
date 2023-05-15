@@ -13,10 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--====== Title ======-->
-    <title>Cafena - Coffee Shop HTML5 Template</title>
+    <title>Coffee</title>
 
     <!--====== Favicon ======-->
-    <link rel="shortcut icon" href="{{asset('client/assets/images/logo/favicon.ico')}}" type="images/x-icon" />
+    <link rel="shortcut icon" href="{{asset('client/assets/images/logo/favicon.ico')}}" type="images/x-icon"/>
 
     <!--====== CSS Here ======-->
     <link rel="stylesheet" href="{{asset('client/assets/css/bootstrap.min.css')}}">
@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="{{asset('client/assets/css/jquery-ui.css')}}">
     <link rel="stylesheet" href="{{asset('client/assets/css/main.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 
 <body class="light-bg">
@@ -97,7 +96,7 @@
     </nav>
     <div class="side-info__wrapper d-flex align-items-center justify-content-between">
         <div class="side-info__logo">
-            <a href="index.html">
+            <a href="{{route('client.home')}}">
                 <img src="{{asset('client/assets/images/logo/logo-black.png')}}" alt="logo">
             </a>
         </div>
@@ -115,7 +114,9 @@
             <div class="side-info">
                 <div class="side-info__content mb-35">
                     <h4 class="title mb-5">About us</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud  nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea
+                        commodo consequat.</p>
                     <a class="site-btn mt-20" href="contact.html">Contact us</a>
                 </div>
                 <div class="contact__info--wrapper mt-15">
@@ -161,7 +162,8 @@
     <div class="side-info">
         <div class="side-info__content mb-35">
             <h4 class="title mb-5">About us</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud  nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea commodo consequat.</p>
             <a class="site-btn mt-20" href="contact.html">Contact us</a>
         </div>
         <div class="contact__info--wrapper mt-15">
@@ -193,67 +195,37 @@
 <!-- cart list -->
 <aside class="cart-bar-wrapper">
     <div class="cart-bar__close">
-        <a class="d-flex align-items-center justify-content-center" href="javascript:void(0);"><i class="fal fa-times"></i></a>
+        <a class="d-flex align-items-center justify-content-center" href="javascript:void(0);"><i
+                class="fal fa-times"></i></a>
     </div>
     <div class="cart-bar">
-        <h4 class="cart-bar__title">Cart Items - <span>4</span></h4>
+        <h4 class="cart-bar__title">Cart Items -
+            <span>{{session()->get('cart')==null?0:count(session()->get('cart'))}}</span></h4>
         <div class="cart-bar__lists">
-            <div class="cart-bar__item position-relative d-flex">
-                <div class="thumb">
-                    <img src="{{asset('client/assets/images/top-grade/tg-1.png')}}" alt="image_not_found">
-                </div>
-                <div class="content">
-                    <h4 class="title">
-                        <a href="product-details.html">Rorem ipsum dolor sit amet.</a>
-                    </h4>
-                    <span class="price">$19.00</span>
-                    <a href="#0" class="remove"><i class="fal fa-times"></i></a>
-                </div>
-            </div>
-            <div class="cart-bar__item position-relative d-flex">
-                <div class="thumb">
-                    <img src="{{asset('client/assets/images/top-grade/tg-2.png')}}" alt="image_not_found">
-                </div>
-                <div class="content">
-                    <h4 class="title">
-                        <a href="product-details.html">Rorem ipsum dolor sit amet.</a>
-                    </h4>
-                    <span class="price">$36.00</span>
-                    <a href="#0" class="remove"><i class="fal fa-times"></i></a>
-                </div>
-            </div>
-            <div class="cart-bar__item position-relative d-flex">
-                <div class="thumb">
-                    <img src="{{asset('client/assets/images/top-grade/tg-3.png')}}" alt="image_not_found">
-                </div>
-                <div class="content">
-                    <h4 class="title">
-                        <a href="product-details.html">Rorem ipsum dolor sit amet.</a>
-                    </h4>
-                    <span class="price">$20.00</span>
-                    <a href="#0" class="remove"><i class="fal fa-times"></i></a>
-                </div>
-            </div>
-            <div class="cart-bar__item position-relative d-flex">
-                <div class="thumb">
-                    <img src="{{asset('client/assets/images/top-grade/tg-4.png')}}" alt="image_not_found">
-                </div>
-                <div class="content">
-                    <h4 class="title">
-                        <a href="product-details.html">Rorem ipsum dolor sit amet.</a>
-                    </h4>
-                    <span class="price">$20.00</span>
-                    <a href="#0" class="remove"><i class="fal fa-times"></i></a>
-                </div>
-            </div>
+            @php $cart = session()->get('cart') @endphp
+            @if(isset($cart) && $cart != null)
+                @foreach($cart as $key => $value)
+                    <div class="cart-bar__item position-relative d-flex">
+                        <div class="thumb">
+                            <img src="{{$value['image']}}" alt="image_not_found">
+                        </div>
+                        <div class="content">
+                            <h4 class="title">
+                                <a>{{$value['name_product']}}</a>
+                            </h4>
+                            <span class="price">{{number_format($value['price'])}}</span>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p align="center">Giỏ hàng hiện đang trống</p>
+            @endif
         </div>
-        <div class="cart-bar__subtotal d-flex align-items-center justify-content-between">
-            <span>Sub Total:</span>
-            <span>$87.00</span>
-        </div>
+        <hr>
+        <br>
+
         <div class="btns d-flex align-items-center justify-content-center">
-            <a href="cart.html" class="site-btn">View Cart</a>
-            <a href="checkout.html" class="site-btn site-btn__borderd">Checkout</a>
+            <a href="{{route('client.cart')}}" class="site-btn">View Cart</a>
         </div>
     </div>
 </aside>
@@ -291,7 +263,8 @@
                         <div class="subscribe">
                             <form action="https://xpressrow.com/html/cafena/cafena/index.html">
                                 <input type="email" name="email" id="email" placeholder="Enter your email">
-                                <button type="submit" class="subscribe__btn">Subscribe <i class="fa fa-paper-plane"></i></button>
+                                <button type="submit" class="subscribe__btn">Subscribe <i class="fa fa-paper-plane"></i>
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -305,7 +278,8 @@
                 <div class="col-lg-7">
                     <div class="footer__logo--content">
                         <img class="mb-15" src="{{asset('client/assets/images/logo/logo.png')}}" alt="">
-                        <p>Donec et nibh maximus, congue est eu, mattis nunc. Praesent ut quam quis quam venenatis fringilla. Morbi vestibulum</p>
+                        <p>Donec et nibh maximus, congue est eu, mattis nunc. Praesent ut quam quis quam venenatis
+                            fringilla. Morbi vestibulum</p>
                     </div>
                 </div>
                 <div class="col-lg-5 align-self-end">
