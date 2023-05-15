@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Category\AdminCategoryController;
 use App\Http\Controllers\Client\Home\ClientHomeController;
 use App\Http\Controllers\Client\Menu\ClientMenuController;
 use App\Http\Controllers\Client\ProductDetail\ClientProductDetailController;
+use App\Http\Controllers\Client\Cart\ClientCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,10 @@ use App\Http\Controllers\Client\ProductDetail\ClientProductDetailController;
 Route::get('/', [ClientHomeController::class, 'index'])->name('client.home');
 Route::get('/menu', [ClientMenuController::class, 'Menu'])->name('client.menu');
 Route::get('/product/{slug}', [ClientProductDetailController::class, 'ProductDetail'])->name('client.product');
+Route::get('/cart', [ClientCartController::class, 'index'])->name('client.cart');
+Route::post('/cart', [ClientCartController::class, 'handleAddtocart'])->name('client.addtocart');
+Route::get('/deleteItemCart-{id}',[ClientCartController::class,'deleteItemCart'])->name('client.deleteItemCart');
+Route::get('/delSs' , [ClientCartController::class, 'DeleteAllSession'])->name('client.deleteSS');
 //Route::get('abcd',[AdminProductController::class,'abcd']);
 Route::prefix('/adminn')->name('admin.')->group(function () {
     Route::get('/', function () {

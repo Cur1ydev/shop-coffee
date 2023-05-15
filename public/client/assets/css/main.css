@@ -4855,6 +4855,51 @@ h6 {
   background-color: #C7A17A;
   color: #ffffff;
 }
+
+.popular-menu__filter1 {
+    border-radius: 5px;
+    border: 1px solid #E2DFDD;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+}
+@media (max-width: 1199px) {
+    .popular-menu__filter1 {
+        border-color: transparent;
+        margin-top: -10px;
+    }
+}
+.popular-menu__filter1 button {
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #6c6c6c;
+    border-radius: 5px;
+    padding: 5px 28px;
+    display: block;
+    background-color: transparent;
+}
+.popular-menu__filter1 button:hover {
+    background-color: #C7A17A;
+    color: #ffffff;
+}
+.popular-menu__filter1 button:not(:last-child) {
+    margin-right: 10px;
+}
+@media (max-width: 1199px) {
+    .popular-menu__filter1 button:not(:last-child) {
+        margin-right: 8px;
+    }
+}
+@media (max-width: 1199px) {
+    .popular-menu__filter1 button {
+        margin-top: 10px;
+    }
+}
+.popular-menu__filter1 .active {
+    background-color: #C7A17A;
+    color: #ffffff;
+}
 .popular-menu__item:hover .popular-menu__thumb img {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);

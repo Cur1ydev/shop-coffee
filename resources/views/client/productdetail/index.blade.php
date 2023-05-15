@@ -179,9 +179,9 @@
                                 <div class="popular-menu__filter d-flex mb-45">
                                     @foreach($getAll->attribute as $value)
                                         @if($value->name=='size')
-                                            <button dt-size="{{$value->value}}"
+                                            <button dt-size="{{$value->value}}" dt-price="{{$value->price}}"
                                                     class="button-size {{$value->value=='Nhỏ'?'active':''}}"
-                                            >{{$value->value}}</button>
+                                            >{{$value->value ." + ". number_format($value->price)}}đ</button>
                                         @endif
                                     @endforeach
                                 </div>
@@ -189,7 +189,7 @@
                             <br>
                             <h4 id="title">Chọn Topping</h4>
                             <div class="popular-menu__wrapper m-auto d-inline-block">
-                                <div class="popular-menu__filter d-flex mb-45">
+                                <div class="popular-menu__filter1 d-flex mb-45">
                                     @foreach($getAll->attribute as $value)
                                         @if($value->name=='topping')
                                             <button dt-topping="{{$value->value}}"
@@ -198,10 +198,11 @@
                                     @endforeach
                                 </div>
                             </div>
+                            <p style="color: red">Lưu ý: Topping sẽ chiếm 10,000đ cho mỗi loại</p>
                             <div class="product-quantity d-flex align-items-center">
                                 <span>Quantity</span>
                                 <input type="number" id="quantity" value="1">
-                                <a href="#" class="site-btn addToCart">add to cart</a>
+                                <button class="site-btn addToCart">add to cart</button>
                             </div>
                             <a href="#0" class="wishlist"><i class="fas fa-heart"></i> Add to watch list</a>
                             <div class="pd-social-wrapper">
@@ -514,17 +515,25 @@
     </main>
     <script>
         $(document).ready(function () {
-            var dtSize = $("button[dt-size]").attr("dt-size");
-            var dtTopping = "";
+            let dtSize = $("button[dt-size]").attr("dt-size");
+            let dtTopping = "";
+            let array_topping = [];
+            let price = {{$getAll->price}};
             $('.button-size').click(function () {
-                dtSize = $(this).attr('dt-size')
+                dtSize = $(this).attr('dt-size');
+                price += parseInt($(this).attr('dt-price'))
             })
             $('.button-topping').click(function () {
                 dtTopping = $(this).attr('dt-topping')
-                if($(this).hasClass('selected')){
-                    $(this).removeClass('selected')
-                }else{
-                    $(this).addClass('selected')
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    const index = array_topping.indexOf(dtTopping);
+                    if (index !== -1) {
+                        array_topping.splice(index, 1);
+                    }
+                } else {
+                    $(this).addClass('active')
+                    array_topping.push(dtTopping)
                 }
             })
             $('#quantity').change(function () {
@@ -534,12 +543,34 @@
                 }
             })
             $('.addToCart').click(function () {
-                // alert(dtSize)
-                // alert(dtTopping)
-                {{--alert({{$getAll->id}})--}}
-                // alert($('#quantity').val())
-                // const size=dtSize;
-                // const toppping =
+                const name_product = "{{$getAll->name}}";
+                const image = "{{$getAll->image}}";
+                const attribute = {
+                    size: dtSize,
+                    topping: array_topping
+                }
+                const quantity = $('#quantity').val();
+                const id = {{$getAll->id}};
+                $.ajax({
+                    url: '{{route('client.addtocart')}}',
+                    method: "Post",
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        id: id,
+                        name_product: name_product,
+                        image: image,
+                        attribute: attribute,
+                        price: price,
+                        quantity: quantity
+                    },
+                    success: function (data) {
+                        alert(data.success);
+                        window.location.href = '{{route('client.cart')}}';
+                    },
+                    error: function (error) {
+                        console.error(error)
+                    }
+                })
             })
         })
     </script>
