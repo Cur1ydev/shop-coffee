@@ -36,10 +36,18 @@ class ClientCartController extends Controller
         }
         $found = false;
         foreach ($cart as &$value) {
-            if ($value['id'] == $data['id'] && $value['name_product'] == $data['name_product'] && $value['image'] == $data['image'] && $value['attribute']['size'] == $data['attribute']['size']) {
-                $value['quantity'] += $data['quantity'];
-                $found = true;
-                break;
+            if (count($value['attribute']['topping'])>0){
+                if ($value['id'] == $data['id'] && $value['name_product'] == $data['name_product'] && $value['image'] == $data['image'] && $value['attribute']['size'] == $data['attribute']['size'] && $value['attribute']['topping'] == $data['attribute']['topping']) {
+                    $value['quantity'] += $data['quantity'];
+                    $found = true;
+                    break;
+                }
+            }else{
+                if ($value['id'] == $data['id'] && $value['name_product'] == $data['name_product'] && $value['image'] == $data['image'] && $value['attribute']['size'] == $data['attribute']['size']) {
+                    $value['quantity'] += $data['quantity'];
+                    $found = true;
+                    break;
+                }
             }
         }
         unset($value);

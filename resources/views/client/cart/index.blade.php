@@ -142,14 +142,18 @@
                 <div class="row justify-content-end">
                     <div class="col-xl-5 col-lg-7">
                         <div class="cart-total mt-100">
-                            <h2 class="title">Cart Total</h2>
+                            <h2 class="title">Tổng Tiền Thanh Toán</h2>
                             <div class="ct-sub">
-                                <span>Sub Total</span>
+                                <span>Tổng Tiền Hàng</span>
                                 <span id="total_order"></span>
                             </div>
+                            <div class="ct-sub">
+                                <span>Áp dụng mã giảm giá</span>
+                                <span id="shipping_fee">0</span>
+                            </div>
                             <div class="ct-sub ct-sub__total">
-                                <span>Total</span>
-                                <span>$ 180</span>
+                                <span>Tổng</span>
+                                <span id="total">$ 180</span>
                             </div>
                             <a href="checkout.html" class="site-btn">Procced to checkout</a>
                         </div>
@@ -184,6 +188,7 @@
                 allTotal +=total;
             })
             document.querySelector('#total_order').innerHTML = allTotal.toLocaleString() + "đ";
+            // document.querySelector('#shipping_fee').innerHTML = '18,000'.toLocaleString() + "đ";
         })
     </script>
 @endsection
