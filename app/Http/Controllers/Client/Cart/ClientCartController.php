@@ -3,14 +3,22 @@
 namespace App\Http\Controllers\Client\Cart;
 
 use App\Http\Controllers\Controller;
+use App\Models\AddressOrder;
+use App\Models\Coupon;
+use App\Models\ProvinceOrder;
 use Illuminate\Http\Request;
 
 class ClientCartController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $cart = session()->get('cart');
-        return view('client.cart.index', compact('cart'));
+        $province = ProvinceOrder::with('addressOrder')->get();
+        $discount=0;
+        if (isset($request->coupon_code)){
+            $discount = Coupon::where('name',$request->coupon_code)->first();
+        }
+        return view('client.cart.index', compact('cart', 'province','discount'));
     }
 
     public function handleAddtocart(Request $request)
@@ -62,5 +70,11 @@ class ClientCartController extends Controller
         unset($cart[$request->id]);
         session()->put('cart', $cart);
         return back()->with('deleteItem', 'Xóa sản phẩm thành công');
+    }
+
+    public function selectAddress(Request $request)
+    {
+        $data = AddressOrder::where('id_province_order', $request->idProvince)->get();
+        return response()->json(['data' => $data]);
     }
 }

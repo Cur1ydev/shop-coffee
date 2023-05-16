@@ -117,7 +117,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea
                         commodo consequat.</p>
-                    <a class="site-btn mt-20" href="contact.html">Contact us</a>
+                    <a class="site-btn mt-20" href="{{route('client.contact')}}">Contact us</a>
                 </div>
                 <div class="contact__info--wrapper mt-15">
                     <h4 class="title mb-10">Contact us</h4>
@@ -151,7 +151,7 @@
 <aside class="side-info-wrapper show-all">
     <div class="side-info__wrapper d-flex align-items-center justify-content-between">
         <div class="side-info__logo">
-            <a href="index.html">
+            <a href="{{route('client.home')}}">
                 <img src="{{asset('client/assets/images/logo/logo-black.png')}}" alt="logo">
             </a>
         </div>
@@ -164,7 +164,7 @@
             <h4 class="title mb-5">About us</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea commodo consequat.</p>
-            <a class="site-btn mt-20" href="contact.html">Contact us</a>
+            <a class="site-btn mt-20" href="{{route('client.contact')}}">Contact us</a>
         </div>
         <div class="contact__info--wrapper mt-15">
             <h4 class="title mb-10">Contact us</h4>
@@ -297,22 +297,7 @@
     <div class="footer__menu-area mt-30 pb-90">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9">
-                    <div class="footer__menu">
-                        <nav>
-                            <ul>
-                                <li class="active"><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="menu.html">Menu</a></li>
-                                <li><a href="reservation.html">Reservation</a></li>
-                                <li><a href="#0">pages</a></li>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-lg-3 text-center text-lg-end">
+                <div class="col-lg-12 text-center text-lg-end">
                     <a href="#" class="go-top go-top__bottom">
                         <span>go top</span>
                         <i class="fal fa-long-arrow-up"></i>

@@ -11,7 +11,7 @@
                         </div>
                         <ul class="header-top__infos pl-75 list-unstyled d-flex align-items-center mb-0">
                             <li><a href="tel:91800458568"><i class="fas fa-phone-square"></i> 91 800 458 568</a></li>
-                            <li><i class="fa fa-map-marker-alt"></i> Wasington Baseben</li>
+                            <li><i class="fa fa-map-marker-alt"></i>{{!empty(session()->get('address'))?session()->get('address'):'Chưa có địa chỉ nào được chọn'}}</li>
                         </ul>
                     </div>
                 </div>
@@ -44,22 +44,18 @@
                             <ul>
                                 <li class="menu-item-has-children active"><a href="{{route('client.home')}}">Home</a>
                                 </li>
-                                <li><a href="about.html">About</a></li>
                                 <li><a href="{{route('client.menu')}}">Menu</a></li>
-                                <li><a href="reservation.html">Reservation</a></li>
-                                <li><a href="#0">pages</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                        <li><a href="chefs.html">Chefs</a></li>
-                                        <li><a href="faq.html">Faq</a></li>
-                                        <li><a href="story.html">Story</a></li>
-                                        <li><a href="gallery.html">Gallery</a></li>
-                                    </ul>
-                                </li>
                                 <li><a href="{{route('client.shop')}}">Shop</a>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="#0">pages</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{{route('client.blog')}}">Blog</a></li>
+                                        <li><a href="{{route('client.faq')}}">Faq</a></li>
+                                        <li><a href="{{route('client.story')}}">Story</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{{route('client.about')}}">About</a></li>
+                                <li><a href="{{route('client.contact')}}">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -68,14 +64,7 @@
                     <div class="menu-area__right menu-area__right--2 d-flex justify-content-end align-items-center">
                         <div class="search">
                             <div class="search__trigger item">
-                                <span class="open"><i class="far fa-search"></i></span>
                                 <span class="close"><i class="fal fa-times"></i></span>
-                            </div>
-                            <div class="search__form">
-                                <form role="search" method="get" action="https://xpressrow.com/html/cafena/cafena/index.html">
-                                    <input type="search" name="s" value="" placeholder="Search Keywords">
-                                    <button type="submit"><i class="far fa-search"></i></button>
-                                </form>
                             </div>
                         </div>
                         <div class="hamburger-trigger item">

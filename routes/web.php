@@ -21,17 +21,46 @@ use App\Http\Controllers\Client\Shop\ClientShopController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/about',function (){
+    return view('client.about.index');
+})->name('client.about');
+Route::get('/contact',function (){
+    return view('client.contact.index');
+})->name('client.contact');
+Route::get('/faq',function (){
+    return view('client.faq.index');
+})->name('client.faq');
+Route::get('/story',function (){
+    return view('client.story.index');
+})->name('client.story');
+Route::get('/blog',function (){
+    return view('client.blog.index');
+})->name('client.blog');
+Route::get('/saveAddress',function (\Illuminate\Http\Request $request){
+//    session()->put('');
+//    dd($request->address);
+    $rule = [
+        'province' => 'required',
+        'address' => 'required'
+    ];
+    $mess=[
+        'province.required' => 'Tỉnh thành phải được chọn',
+        'address.required' => 'Địa chỉ phải được chọn'
+    ];
+    $request->validate($rule,$mess);
+    session()->put('address',$request->address);
+    return back()->with('addressSuccess','Thêm địa chỉ đặt hàng thành công');
+})->name('client.saveAddress');
 Route::get('/', [ClientHomeController::class, 'index'])->name('client.home');
 Route::get('/menu', [ClientMenuController::class, 'Menu'])->name('client.menu');
 Route::get('/product/{slug}', [ClientProductDetailController::class, 'ProductDetail'])->name('client.product');
 Route::get('/cart', [ClientCartController::class, 'index'])->name('client.cart');
 Route::post('/cart', [ClientCartController::class, 'handleAddtocart'])->name('client.addtocart');
+Route::get('/selectAddress',[ClientCartController::class,'selectAddress'])->name('client.address');
+
 Route::get('/deleteItemCart-{id}',[ClientCartController::class,'deleteItemCart'])->name('client.deleteItemCart');
 Route::get('/delSs' , [ClientCartController::class, 'DeleteAllSession'])->name('client.deleteSS');
 Route::get('/shop',[ClientShopController::class,'index'])->name('client.shop');
-Route::get('abcd',function (){
-    dd(session()->get('cart'));
-});
 Route::prefix('/adminn')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard.index');

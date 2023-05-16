@@ -6,6 +6,9 @@
     @if(session('deleteItem'))
         <script>alert('{{session('deleteItem')}}')</script>
     @endif
+    @if(session('addressSuccess'))
+        <script>alert('{{session('addressSuccess')}}')</script>
+    @endif
     <main>
         <!-- breadcrumb area start -->
         <section class="breadcrumb-area pt-140 pb-140 bg_img"
@@ -25,7 +28,7 @@
                                     <a href="{{route('client.home')}}"><span>Home</span></a>
                                 </li>
                                 <li class="cafenabcrumb-item duxinbcrumb-end">
-                                    <span>Faq</span>
+                                    <span>cart</span>
                                 </li>
                             </ul>
                         </div>
@@ -123,8 +126,7 @@
                                 <form action="" method="get">
                                     <input id="coupon_code" class="input-text" name="coupon_code" value=""
                                            placeholder="Mã Giảm Giá" type="text">
-                                    <button class="site-btn site-btn site-btn__bghide" name="apply_coupon"
-                                            type="submit">
+                                    <button class="site-btn site-btn site-btn__bghide">
                                         Áp Dụng
                                     </button>
                                 </form>
@@ -140,6 +142,47 @@
                     </div>
                 </div>
                 <div class="row justify-content-end">
+                    <div class="col-xl-7 col-lg-5">
+                        <div class="cart-total mt-100">
+                            <div class="reservation__wrapper reservation__wrapper--2">
+                                <div class="section-heading section-heading__black text-center mb-35">
+                                    <p class="title">Chọn Địa chỉ Đặt hàng</p>
+                                </div>
+                                <div class="reservation__form reservation__form--2 mt-none-30 text-center">
+                                    <form action="{{route('client.saveAddress')}}" method="get">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6">
+                                                <div class="from-group mt-30">
+                                                    <select name="province" id="province">
+                                                        <option data-display="Service Category" value="">Tỉnh Thành
+                                                        </option>
+                                                        @foreach($province as $value)
+                                                            <option value="{{$value->id}}">{{$value->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                @error('province')
+                                                <p align="center" style="color: red">{{$message}}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6">
+                                                <div class="from-group mt-30">
+                                                    <select name="address" id="address">
+                                                    </select>
+                                                </div>
+                                                @error('address')
+                                                <p align="center" style="color: red">{{$message}}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-xl-12 text-center">
+                                                <button type="submit" class="site-btn mt-30">Lưu địa chỉ</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-xl-5 col-lg-7">
                         <div class="cart-total mt-100">
                             <h2 class="title">Tổng Tiền Thanh Toán</h2>
@@ -149,7 +192,7 @@
                             </div>
                             <div class="ct-sub">
                                 <span>Áp dụng mã giảm giá</span>
-                                <span id="shipping_fee">0</span>
+                                <span id="coupon">{{isset($discount->price)?number_format($discount->price):0}}</span>
                             </div>
                             <div class="ct-sub ct-sub__total">
                                 <span>Tổng</span>
@@ -187,8 +230,33 @@
                 let total = parseInt(item.innerHTML.replace(/,/g, ''));
                 allTotal += total;
             })
-            document.querySelector('#total_order').innerHTML = allTotal.toLocaleString() + "đ";
+            document.querySelector('#total_order').innerHTML = allTotal.toLocaleString();
             // document.querySelector('#shipping_fee').innerHTML = '18,000'.toLocaleString() + "đ";
+            $('#province').change(function () {
+                const idProvince = $(this).val();
+                $.ajax({
+                    url: '{{route('client.address')}}',
+                    method: 'Get',
+                    data: {
+                        idProvince: idProvince
+                    },
+                    success: function (data) {
+                        $('#address').empty();
+                        $.each(data.data, function (key, value) {
+                            $('#address').append('<option value="' + value.address + '">' + value.address + '</option>')
+                            // console.log(value)
+                            console.log(key)
+                        })
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            })
+            const coupon = $('#coupon').text().replace(/,/g,'')
+            const total = parseInt(allTotal) - parseInt(coupon)
+            document.querySelector('#total').innerHTML=total.toLocaleString()+"đ"
         })
     </script>
+
 @endsection
