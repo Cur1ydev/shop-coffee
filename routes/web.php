@@ -36,6 +36,9 @@ Route::get('/story',function (){
 Route::get('/blog',function (){
     return view('client.blog.index');
 })->name('client.blog');
+Route::get('abcd',function (){
+    dd(session()->get('cart'));
+});
 Route::get('/saveAddress',function (\Illuminate\Http\Request $request){
 //    session()->put('');
 //    dd($request->address);
@@ -57,7 +60,7 @@ Route::get('/product/{slug}', [ClientProductDetailController::class, 'ProductDet
 Route::get('/cart', [ClientCartController::class, 'index'])->name('client.cart');
 Route::post('/cart', [ClientCartController::class, 'handleAddtocart'])->name('client.addtocart');
 Route::get('/selectAddress',[ClientCartController::class,'selectAddress'])->name('client.address');
-
+Route::get('/increaseQuantity',[ClientCartController::class,'increaseQuantity'])->name('client.increaseQuantity');
 Route::get('/deleteItemCart-{id}',[ClientCartController::class,'deleteItemCart'])->name('client.deleteItemCart');
 Route::get('/delSs' , [ClientCartController::class, 'DeleteAllSession'])->name('client.deleteSS');
 Route::get('/shop',[ClientShopController::class,'index'])->name('client.shop');

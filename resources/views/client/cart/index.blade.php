@@ -95,7 +95,7 @@
                                                     </td>
                                                 @endif
                                                 <td class="product-quantity">
-                                                    <input type="number" class="quantityCart"
+                                                    <input type="number" data-id="{{$number}}" class="quantityCart"
                                                            value="{{$value['quantity']}}">
                                                 </td>
                                                 @if(isset($value['attribute']['topping']))
@@ -209,15 +209,28 @@
     <script>
         $(document).ready(function () {
             $('.quantityCart').change(function () {
-                if ($(this).val() < 1) {
+                let quantity = $(this).val();
+                if (quantity< 1) {
                     alert('Số lượng không được nhỏ hơn 1');
                     $(this).val(1)
+                    return;
                 }
-                const price = parseInt($(this).closest('tr').find('.product-price .amount_price').text().replace(/,/g, ''))
-                const quantity = parseInt($(this).val());
-                const total = price * quantity;
-                const total_price = $(this).closest('tr').find('.product-subtotal .amount_total');
-                total_price.text(total.toLocaleString()).text()
+                const keyProduct = $(this).attr('data-id')
+                $.ajax({
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    url : '{{route('client.increaseQuantity')}}',
+                    method : 'get',
+                    data : {
+                        quantity : quantity,
+                        keyProduct : keyProduct
+                    },
+                    success : function (data) {
+                        location.reload()
+                    },
+                    error : function (error) {
+                        console.log(error)
+                    }
+                })
             })
             $('#clear-cart').click(function () {
                 if (confirm('Bạn chắc chắn muốn xóa hết giỏ hàng không ?')) {
@@ -231,7 +244,6 @@
                 allTotal += total;
             })
             document.querySelector('#total_order').innerHTML = allTotal.toLocaleString();
-            // document.querySelector('#shipping_fee').innerHTML = '18,000'.toLocaleString() + "đ";
             $('#province').change(function () {
                 const idProvince = $(this).val();
                 $.ajax({

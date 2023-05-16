@@ -14,11 +14,11 @@ class ClientCartController extends Controller
     {
         $cart = session()->get('cart');
         $province = ProvinceOrder::with('addressOrder')->get();
-        $discount=0;
-        if (isset($request->coupon_code)){
-            $discount = Coupon::where('name',$request->coupon_code)->first();
+        $discount = 0;
+        if (isset($request->coupon_code)) {
+            $discount = Coupon::where('name', $request->coupon_code)->first();
         }
-        return view('client.cart.index', compact('cart', 'province','discount'));
+        return view('client.cart.index', compact('cart', 'province', 'discount'));
     }
 
     public function handleAddtocart(Request $request)
@@ -76,5 +76,20 @@ class ClientCartController extends Controller
     {
         $data = AddressOrder::where('id_province_order', $request->idProvince)->get();
         return response()->json(['data' => $data]);
+    }
+
+    public function increaseQuantity(Request $request)
+    {
+        $quantity = $request->quantity;
+        $keyProduct = $request->keyProduct;
+        $cart = session()->get('cart');
+        foreach ($cart as $key => &$value) {
+            if ($key == $keyProduct) {
+                $value['quantity'] = $quantity;
+            }
+        }
+        unset($value);
+        session()->put('cart', $cart);
+        return response()->json('thành công');
     }
 }
