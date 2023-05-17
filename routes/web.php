@@ -10,6 +10,7 @@ use App\Http\Controllers\Client\Menu\ClientMenuController;
 use App\Http\Controllers\Client\ProductDetail\ClientProductDetailController;
 use App\Http\Controllers\Client\Cart\ClientCartController;
 use App\Http\Controllers\Client\Shop\ClientShopController;
+use App\Http\Controllers\Client\Checkout\ClientCheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +38,12 @@ Route::get('/blog',function (){
     return view('client.blog.index');
 })->name('client.blog');
 Route::get('abcd',function (){
-    dd(session()->get('cart'));
+    dd(session()->get('allPrice'));
 });
+Route::get('/pushPrice',function (\Illuminate\Http\Request $request){
+    session()->put('allPrice',$request->total);
+    return response()->json(['success' => 'Thành công']);
+})->name('client.pushPrice');
 Route::get('/saveAddress',function (\Illuminate\Http\Request $request){
 //    session()->put('');
 //    dd($request->address);
@@ -54,6 +59,7 @@ Route::get('/saveAddress',function (\Illuminate\Http\Request $request){
     session()->put('address',$request->address);
     return back()->with('addressSuccess','Thêm địa chỉ đặt hàng thành công');
 })->name('client.saveAddress');
+Route::get('/checkout',[ClientCheckoutController::class,'index'])->name('client.checkout');
 Route::get('/', [ClientHomeController::class, 'index'])->name('client.home');
 Route::get('/menu', [ClientMenuController::class, 'Menu'])->name('client.menu');
 Route::get('/product/{slug}', [ClientProductDetailController::class, 'ProductDetail'])->name('client.product');

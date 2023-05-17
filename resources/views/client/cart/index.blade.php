@@ -38,9 +38,16 @@
         </section>
         <!-- breadcrumb area end -->
 
+
         <!-- cart area start -->
         <div class="cart-area pt-120 pb-120">
             <div class="container">
+                @if(session('errorAddress'))
+                    <p align="center" class="title" style="color: red">{{session('errorAddress')}}</p>
+                @endif
+                @if(session('errorPrice'))
+                    <p align="center" class="title" style="color: red">{{session('errorPrice')}}</p>
+                @endif
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="cart-wrapper">
@@ -196,9 +203,9 @@
                             </div>
                             <div class="ct-sub ct-sub__total">
                                 <span>Tổng</span>
-                                <span id="total">$ 180</span>
+                                <span id="total"></span>
                             </div>
-                            <a href="checkout.html" class="site-btn">Procced to checkout</a>
+                            <button class="site-btn" id="checkout">Thanh toán</button>
                         </div>
                     </div>
                 </div>
@@ -268,6 +275,18 @@
             const coupon = $('#coupon').text().replace(/,/g,'')
             const total = parseInt(allTotal) - parseInt(coupon)
             document.querySelector('#total').innerHTML=total.toLocaleString()+"đ"
+            $('#checkout').click(function () {
+                $.ajax({
+                    url : '{{route('client.pushPrice')}}',
+                    method : 'Get',
+                    data : {
+                        total : total
+                    },
+                    success : function () {
+                        window.location.href = '{{route('client.checkout')}}'
+                    }
+                })
+            })
         })
     </script>
 
