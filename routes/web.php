@@ -39,7 +39,12 @@ Route::get('/blog',function (){
     return view('client.blog.index');
 })->name('client.blog');
 Route::get('abcd',function (){
-    dd(session()->get('allPrice'));
+//    dd(session()->get('allPrice'));
+//    dd("LX-".rand(0,100000));
+    dd(session()->all());
+//    foreach (session()->get('cart') as $value){
+//        dd(json_encode($value['attribute'],JSON_UNESCAPED_UNICODE));
+//    }
 });
 Route::get('/pushPrice',function (\Illuminate\Http\Request $request){
     session()->put('allPrice',$request->total);
@@ -72,6 +77,7 @@ Route::get('/deleteItemCart-{id}',[ClientCartController::class,'deleteItemCart']
 Route::get('/delSs' , [ClientCartController::class, 'DeleteAllSession'])->name('client.deleteSS');
 Route::get('/shop',[ClientShopController::class,'index'])->name('client.shop');
 Route::post('payment',[PaymentController::class,'handleApiVnpay'])->name('client.payment');
+Route::get('/order-success',[PaymentController::class,'handleVNpayReturn'])->name('client.handlePayment');
 Route::prefix('/adminn')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard.index');

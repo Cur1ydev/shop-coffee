@@ -13,4 +13,7 @@ class Coupon extends Model
         'name',
         'price'
     ];
+    public function product(){
+        return $this->hasMany(Product::class,'coupon_id');
+    }
 }

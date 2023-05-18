@@ -112,7 +112,7 @@
                                                     </td>
                                                 @else
                                                     <td class="product-subtotal"><span
-                                                            class="amount amount_total">{{number_format($value['price']* $value['quantity'])}}</span>
+                                                            class="amount amount_total">{{number_format($value['total_price'])}}</span>
                                                         đ
                                                     </td>
                                                 @endif
