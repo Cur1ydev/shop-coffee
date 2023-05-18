@@ -11,6 +11,7 @@ use App\Http\Controllers\Client\ProductDetail\ClientProductDetailController;
 use App\Http\Controllers\Client\Cart\ClientCartController;
 use App\Http\Controllers\Client\Shop\ClientShopController;
 use App\Http\Controllers\Client\Checkout\ClientCheckoutController;
+use App\Http\Controllers\Client\Checkout\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,7 @@ Route::get('/increaseQuantity',[ClientCartController::class,'increaseQuantity'])
 Route::get('/deleteItemCart-{id}',[ClientCartController::class,'deleteItemCart'])->name('client.deleteItemCart');
 Route::get('/delSs' , [ClientCartController::class, 'DeleteAllSession'])->name('client.deleteSS');
 Route::get('/shop',[ClientShopController::class,'index'])->name('client.shop');
+Route::post('payment',[PaymentController::class,'handleApiVnpay'])->name('client.payment');
 Route::prefix('/adminn')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard.index');

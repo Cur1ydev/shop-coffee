@@ -36,55 +36,68 @@
                     <div class="col-xl-12">
 
                         <div class="cart-wrapper checkout-wrapper">
-                            <form action="" method="get">
-                            <div class="row">
-                                <h1 class="title" align="center">Xác nhận đơn hàng</h1>
-                                <div class="col-xl-5">
-                                    <div class="checkout-top">
-                                        <div class="tab-content" id="pdContent">
-                                            <h2 class="title text-start">Thông Tin Khách Hàng</h2>
-                                            <div class="tab-pane fade show active" id="pd-1" role="tabpanel"
-                                                 aria-labelledby="pd-1-tab">
-                                                <div class="cart-form">
-
+                            <form action="{{route('client.payment')}}" method="post">
+                                <div class="row">
+                                    <h1 class="title" align="center">Xác nhận đơn hàng</h1>
+                                    <div class="col-xl-5">
+                                        <div class="checkout-top">
+                                            <div class="tab-content" id="pdContent">
+                                                <h2 class="title text-start">Thông Tin Khách Hàng</h2>
+                                                <div class="tab-pane fade show active" id="pd-1" role="tabpanel"
+                                                     aria-labelledby="pd-1-tab">
+                                                    <div class="cart-form">
                                                         <div class="row">
                                                             <div class="col-xl-12">
                                                                 <div class="from-group mt-30">
                                                                     <input type="text" name="name" id="name"
                                                                            placeholder="Tên người nhận">
                                                                 </div>
+                                                                @error('name')
+                                                                <p align="center" style="color: red">{{$message}}</p>
+                                                                @enderror
                                                             </div>
+
                                                             <div class="col-xl-12">
                                                                 <div class="from-group mt-30">
                                                                     <input type="text" name="phone_number" id="tel"
                                                                            placeholder="Số điện thoại">
                                                                 </div>
+                                                                @error('phone_number')
+                                                                <p align="center" style="color: red">{{$message}}</p>
+                                                                @enderror
                                                             </div>
                                                             <div class="col-xl-12">
                                                                 <div class="from-group mt-30">
-                                                                    <textarea name="note" id="ainfo" placeholder="Ghi chú"></textarea>
+                                                                    <textarea name="note" id="ainfo"
+                                                                              placeholder="Ghi chú"></textarea>
                                                                 </div>
                                                             </div>
-
                                                         </div>
-
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-1"></div>
-                                <div class="col-xl-6">
-                                    <div class="cart-total mt-45 text-end">
-                                        <h2 class="title text-start">Tổng Tiền</h2>
-                                        <div class="ct-sub ct-sub__total">
-                                            <span>Total</span>
-                                            <span>{{number_format(session()->get('allPrice'))}}đ</span>
+                                    <div class="col-xl-1"></div>
+                                    <div class="col-xl-6">
+                                        <div class="cart-total mt-45 text-end">
+                                            <h2 class="title text-start">Tổng Tiền</h2>
+                                            <div class="ct-sub ct-sub__total">
+                                                <span>Total</span>
+                                                <span>{{number_format(session()->get('allPrice'))}}đ</span>
+                                            </div>
+                                            {{--                                        <form action="{{route('client.payment')}}" method="post">--}}
+                                            <input type="text" name="total_price" value="{{session()->get('allPrice')}}"
+                                                   hidden>
+                                            <button type="submit" name="payvnpay" class="btn btn-primary"
+                                                    style="margin-top: 1em !important; width: 100%">Thanh toán bằng
+                                                VNPAY
+                                            </button>
+                                            {{--                                        </form>--}}
                                         </div>
-                                        <button class="site-btn">Procced to checkout</button>
                                     </div>
                                 </div>
-                            </div>
+                                @csrf
                             </form>
                         </div>
                     </div>
