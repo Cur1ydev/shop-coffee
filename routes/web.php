@@ -12,6 +12,9 @@ use App\Http\Controllers\Client\Cart\ClientCartController;
 use App\Http\Controllers\Client\Shop\ClientShopController;
 use App\Http\Controllers\Client\Checkout\ClientCheckoutController;
 use App\Http\Controllers\Client\Checkout\PaymentController;
+use App\Http\Controllers\Admin\ProductAttribute\AdminProductAttributeController;
+use App\Http\Controllers\Admin\Coupon\AdminCouponController;
+use App\Http\Controllers\Admin\Province\AdminProvinceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +48,7 @@ Route::get('abcd',function (){
 //    foreach (session()->get('cart') as $value){
 //        dd(json_encode($value['attribute'],JSON_UNESCAPED_UNICODE));
 //    }
+//    dd(\Carbon\Carbon::now()->subDay());
 });
 Route::get('/pushPrice',function (\Illuminate\Http\Request $request){
     session()->put('allPrice',$request->total);
@@ -106,5 +110,29 @@ Route::prefix('/adminn')->name('admin.')->group(function () {
         Route::get('/update-{id}', [AdminCategoryController::class, 'Update'])->name('update');
         Route::post('/update-{id}', [AdminCategoryController::class, 'UpdatePost'])->name('updatePost');
         Route::get('/delete-{id}', [AdminCategoryController::class, 'Delete'])->name('delete');
+    });
+    Route::prefix('/product-attribute')->name('productattribute.')->group(function () {
+        Route::get('/list', [AdminProductAttributeController::class, 'List'])->name('list');
+        Route::get('/add', [AdminProductAttributeController::class, 'Add'])->name('add');
+        Route::post('/add', [AdminProductAttributeController::class, 'AddPost'])->name('addPost');
+        Route::get('/update-{product_id}-{attribute_id}', [AdminProductAttributeController::class, 'Update'])->name('update');
+        Route::post('/update-{product_id}-{attribute_id}', [AdminProductAttributeController::class, 'UpdatePost'])->name('updatePost');
+        Route::get('/delete-{product_id}-{attribute_id}', [AdminProductAttributeController::class, 'Delete'])->name('delete');
+    });
+    Route::prefix('/coupon')->name('coupon.')->group(function () {
+        Route::get('/list', [AdminCouponController::class, 'List'])->name('list');
+        Route::get('/add', [AdminCouponController::class, 'Add'])->name('add');
+        Route::post('/add', [AdminCouponController::class, 'AddPost'])->name('addPost');
+        Route::get('/update-{id}', [AdminCouponController::class, 'Update'])->name('update');
+        Route::post('/update-{id}', [AdminCouponController::class, 'UpdatePost'])->name('updatePost');
+        Route::get('/delete-{id}', [AdminCouponController::class, 'Delete'])->name('delete');
+    });
+    Route::prefix('/province')->name('province.')->group(function () {
+        Route::get('/list', [AdminProvinceController::class, 'List'])->name('list');
+        Route::get('/add', [AdminProvinceController::class, 'Add'])->name('add');
+        Route::post('/add', [AdminProvinceController::class, 'AddPost'])->name('addPost');
+        Route::get('/update-{id}', [AdminProvinceController::class, 'Update'])->name('update');
+        Route::post('/update-{id}', [AdminProvinceController::class, 'UpdatePost'])->name('updatePost');
+        Route::get('/delete-{id}', [AdminProvinceController::class, 'Delete'])->name('delete');
     });
 });

@@ -112,7 +112,7 @@
                                                     </td>
                                                 @else
                                                     <td class="product-subtotal"><span
-                                                            class="amount amount_total">{{number_format($value['total_price'])}}</span>
+                                                            class="amount amount_total">{{number_format($value['price']*$value['quantity'])}}</span>
                                                         đ
                                                     </td>
                                                 @endif
@@ -217,7 +217,7 @@
         $(document).ready(function () {
             $('.quantityCart').change(function () {
                 let quantity = $(this).val();
-                if (quantity< 1) {
+                if (quantity < 1) {
                     alert('Số lượng không được nhỏ hơn 1');
                     $(this).val(1)
                     return;
@@ -225,16 +225,16 @@
                 const keyProduct = $(this).attr('data-id')
                 $.ajax({
                     _token: $('meta[name="csrf-token"]').attr('content'),
-                    url : '{{route('client.increaseQuantity')}}',
-                    method : 'get',
-                    data : {
-                        quantity : quantity,
-                        keyProduct : keyProduct
+                    url: '{{route('client.increaseQuantity')}}',
+                    method: 'get',
+                    data: {
+                        quantity: quantity,
+                        keyProduct: keyProduct
                     },
-                    success : function (data) {
+                    success: function (data) {
                         location.reload()
                     },
-                    error : function (error) {
+                    error: function (error) {
                         console.log(error)
                     }
                 })
@@ -272,17 +272,17 @@
                     }
                 })
             })
-            const coupon = $('#coupon').text().replace(/,/g,'')
+            const coupon = $('#coupon').text().replace(/,/g, '')
             const total = parseInt(allTotal) - parseInt(coupon)
-            document.querySelector('#total').innerHTML=total.toLocaleString()+"đ"
+            document.querySelector('#total').innerHTML = total.toLocaleString() + "đ"
             $('#checkout').click(function () {
                 $.ajax({
-                    url : '{{route('client.pushPrice')}}',
-                    method : 'Get',
-                    data : {
-                        total : total
+                    url: '{{route('client.pushPrice')}}',
+                    method: 'Get',
+                    data: {
+                        total: total
                     },
-                    success : function () {
+                    success: function () {
                         window.location.href = '{{route('client.checkout')}}'
                     }
                 })

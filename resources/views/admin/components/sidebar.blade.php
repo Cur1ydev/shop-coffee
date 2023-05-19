@@ -101,18 +101,32 @@
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                             <i class="ri-user-3-line"></i>
-                            <span>Roles</span>
+                            <span>Product Attribute</span>
                         </a>
                         <ul class="sidebar-submenu">
                             <li>
-                                <a href="role.html">All roles</a>
+                                <a href="{{route('admin.productattribute.list')}}">Product Attribute</a>
                             </li>
                             <li>
-                                <a href="create-role.html">Create Role</a>
+                                <a href="{{route('admin.productattribute.add')}}">Add Product Attribute</a>
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-list">
+                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i class="ri-price-tag-3-line"></i>
+                            <span>Coupons</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="{{route('admin.coupon.list')}}">Coupon List</a>
+                            </li>
 
+                            <li>
+                                <a href="{{route('admin.coupon.add')}}">Add Coupon</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="media.html">
                             <i class="ri-price-tag-3-line"></i>
@@ -141,7 +155,7 @@
                     <li class="sidebar-list">
                         <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                             <i class="ri-focus-3-line"></i>
-                            <span>Localization</span>
+                            <span>Province</span>
                         </a>
                         <ul class="sidebar-submenu">
                             <li>
@@ -154,21 +168,7 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-list">
-                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                            <i class="ri-price-tag-3-line"></i>
-                            <span>Coupons</span>
-                        </a>
-                        <ul class="sidebar-submenu">
-                            <li>
-                                <a href="coupon-list.html">Coupon List</a>
-                            </li>
 
-                            <li>
-                                <a href="create-coupon.html">Create Coupon</a>
-                            </li>
-                        </ul>
-                    </li>
 
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="taxes.html">

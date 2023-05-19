@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Interface\Admin\AttributeInterface;
 use App\Interface\Admin\CategoryInterface;
+use App\Interface\Admin\CouponInterface;
+use App\Interface\Admin\ProductAttributeInterface;
 use App\Interface\Admin\ProductInterface;
 use App\Interface\Client\HomeInterface;
 use App\Interface\Client\MenuInterface;
@@ -11,6 +13,8 @@ use App\Interface\Client\ProductDetailInterface;
 use App\Interface\Client\ShopInterface;
 use App\Repository\Admin\AttributeRepository;
 use App\Repository\Admin\CategoryRepository;
+use App\Repository\Admin\CouponRepository;
+use App\Repository\Admin\ProductAttributeRepository;
 use App\Repository\Admin\ProductRepository;
 use App\Repository\Client\HomeRepository;
 use App\Repository\Client\MenuRepository;
@@ -29,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProductInterface::class, ProductRepository::class);
         $this->app->bind(AttributeInterface::class, AttributeRepository::class);
         $this->app->bind(CategoryInterface::class, CategoryRepository::class);
+        $this->app->bind(ProductAttributeInterface::class,ProductAttributeRepository::class);
+        $this->app->bind(CouponInterface::class,CouponRepository::class);
 
         //Client
         $this->app->bind(HomeInterface::class, HomeRepository::class);

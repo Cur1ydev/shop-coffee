@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client\Checkout;
 use App\Http\Controllers\Controller;
 use App\Models\Orderitem;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -22,7 +23,8 @@ class PaymentController extends Controller
         $request->validate($rule, $mess);
         session()->put([
             'username' => $request->name,
-            'phone_number' => $request->phone_number
+            'phone_number' => $request->phone_number,
+            'note' => $request->note
         ]);
 
         error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
@@ -116,35 +118,41 @@ class PaymentController extends Controller
 
     public function handleVNpayReturn(Request $request)
     {
-
         if ($request->msg == 'success' && !empty(session()->get('cart')) && !empty(session()->get('address')) && !empty(session()->get('allPrice')) && !empty(session()->get('username')) && !empty(session()->get('phone_number'))) {
             $cart = session()->get('cart');
             foreach ($cart as $key => $value) {
                 $orderItem = new Orderitem();
                 $orderItem->order_code = "LX-" . rand(0, 100000);
-                $orderItem->coupon_id = session()->get('coupon_id');
+                $orderItem->coupon = !empty(session()->get('coupon')) ? session()->get('coupon') : '';
                 $orderItem->product_id = $value['id'];
-                $orderItem->attribute = json_encode($value['attribute'],JSON_UNESCAPED_UNICODE);
+                $orderItem->status_id = 1;
+                $orderItem->attribute = json_encode($value['attribute'], JSON_UNESCAPED_UNICODE);
                 $orderItem->price = $value['price'];
                 $orderItem->quantity = $value['quantity'];
-                $orderItem->total_price =session()->get('allPrice');
+                $orderItem->total_price = $value['quantity'] * $value['price'];
                 $orderItem->address = session()->get('address');
                 $orderItem->username = session()->get('username');
                 $orderItem->phone_number = session()->get('phone_number');
+                $orderItem->note = !empty(session()->get('note')) ? session()->get('note') : '';
                 $orderItem->save();
             }
-            session()->forget('cart');
-            session()->forget('allPrice');
-            session()->forget('username');
-            session()->forget('phone_number');
-            if (!empty(session()->get('coupon_id'))){
+            session()->forget(['cart','allPrice','username']);
+            if (!empty(session()->get('coupon_id'))) {
                 session()->forget('coupon_id');
             }
-            return redirect()->route('client.home');
+            if (!empty(session()->get('note'))) {
+                session()->forget('note');
+            }
+            session()->save();
         }
-        else{
-            dd('đã có lỗi');
-        }
+
+        $order = Orderitem::where('phone_number', session()->get('phone_number'))
+            ->where('created_at','>=', Carbon::now()->subDay())
+            ->with('product')
+            ->with('status')
+            ->get();
+//        dd($order);
+        return view('client.ordersuccess.index',compact('order'));
     }
 
 }

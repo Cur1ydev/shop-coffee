@@ -17,7 +17,7 @@ class ClientCartController extends Controller
         $discount = 0;
         if (isset($request->coupon_code)) {
             $discount = Coupon::where('name', $request->coupon_code)->first();
-            session()->put('coupon_id',$discount->id);
+            session()->put('coupon',$discount->name);
         }
         return view('client.cart.index', compact('cart', 'province', 'discount'));
     }
