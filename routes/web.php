@@ -15,6 +15,7 @@ use App\Http\Controllers\Client\Checkout\PaymentController;
 use App\Http\Controllers\Admin\ProductAttribute\AdminProductAttributeController;
 use App\Http\Controllers\Admin\Coupon\AdminCouponController;
 use App\Http\Controllers\Admin\Province\AdminProvinceController;
+use App\Http\Controllers\Admin\Address\AdminAddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,5 +135,13 @@ Route::prefix('/adminn')->name('admin.')->group(function () {
         Route::get('/update-{id}', [AdminProvinceController::class, 'Update'])->name('update');
         Route::post('/update-{id}', [AdminProvinceController::class, 'UpdatePost'])->name('updatePost');
         Route::get('/delete-{id}', [AdminProvinceController::class, 'Delete'])->name('delete');
+    });
+    Route::prefix('/address')->name('address.')->group(function () {
+        Route::get('/list', [AdminAddressController::class, 'List'])->name('list');
+        Route::get('/add', [AdminAddressController::class, 'Add'])->name('add');
+        Route::post('/add', [AdminAddressController::class, 'AddPost'])->name('addPost');
+        Route::get('/update-{id}', [AdminAddressController::class, 'Update'])->name('update');
+        Route::post('/update-{id}', [AdminAddressController::class, 'UpdatePost'])->name('updatePost');
+        Route::get('/delete-{id}', [AdminAddressController::class, 'Delete'])->name('delete');
     });
 });

@@ -151,7 +151,21 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-list">
+                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i class="ri-focus-3-line"></i>
+                            <span>Address</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="{{route('admin.address.list')}}">List Address</a>
+                            </li>
 
+                            <li>
+                                <a href="{{route('admin.address.add')}}">Add Address</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="sidebar-list">
                         <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                             <i class="ri-focus-3-line"></i>
@@ -159,11 +173,11 @@
                         </a>
                         <ul class="sidebar-submenu">
                             <li>
-                                <a href="translation.html">Translation</a>
+                                <a href="{{route('admin.province.list')}}">List Province</a>
                             </li>
 
                             <li>
-                                <a href="currency-rates.html">Currency Rates</a>
+                                <a href="{{route('admin.province.add')}}">Add Province</a>
                             </li>
                         </ul>
                     </li>
