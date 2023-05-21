@@ -9,8 +9,8 @@
                         <div class="custome-1-bg b-r-4 card-body">
                             <div class="media align-items-center static-top-widget">
                                 <div class="media-body p-0">
-                                    <span class="m-0">Total Revenue</span>
-                                    <h4 class="mb-0 counter">$6659
+                                    <span class="m-0">Tổng Doanh Thu</span>
+                                    <h4 class="mb-0 counter">{{number_format($totalPrice)}}đ
                                         <span class="badge badge-light-primary grow">
                                                     <i data-feather="trending-up"></i>8.5%</span>
                                     </h4>
@@ -28,8 +28,8 @@
                         <div class="custome-2-bg b-r-4 card-body">
                             <div class="media static-top-widget">
                                 <div class="media-body p-0">
-                                    <span class="m-0">Total Orders</span>
-                                    <h4 class="mb-0 counter">9856
+                                    <span class="m-0">Tổng Đơn Đã Đặt</span>
+                                    <h4 class="mb-0 counter">{{$countOrder}}
                                         <span class="badge badge-light-danger grow">
                                                     <i data-feather="trending-down"></i>8.5%</span>
                                     </h4>
@@ -47,8 +47,8 @@
                         <div class="custome-3-bg b-r-4 card-body">
                             <div class="media static-top-widget">
                                 <div class="media-body p-0">
-                                    <span class="m-0">Total Products</span>
-                                    <h4 class="mb-0 counter">893
+                                    <span class="m-0">Tổng Sản Phẩm</span>
+                                    <h4 class="mb-0 counter">{{$countProduct}}
                                         <a href="add-new-product.html" class="badge badge-light-secondary grow">
                                             ADD NEW</a>
                                     </h4>
@@ -67,8 +67,8 @@
                         <div class="custome-4-bg b-r-4 card-body">
                             <div class="media static-top-widget">
                                 <div class="media-body p-0">
-                                    <span class="m-0">Total Customers</span>
-                                    <h4 class="mb-0 counter">4.6k
+                                    <span class="m-0">Đơn Thanh Toán</span>
+                                    <h4 class="mb-0 counter">{{$countPay}}
                                         <span class="badge badge-light-success grow">
                                                     <i data-feather="trending-down"></i>8.5%</span>
                                     </h4>

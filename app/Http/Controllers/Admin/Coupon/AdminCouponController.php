@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Coupon;
 
 use App\Http\Controllers\Controller;
 use App\Interface\Admin\CouponInterface;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class AdminCouponController extends Controller
@@ -42,6 +43,9 @@ class AdminCouponController extends Controller
             'price' => $request->price
         ];
         $this->coupon->Create($data);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Thêm mã giảm giá thành công";
+        $nt->save();
         return redirect()->route('admin.coupon.list');
 
     }
@@ -68,12 +72,18 @@ class AdminCouponController extends Controller
             'price' => $request->price
         ];
         $this->coupon->Update($data,$request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Sửa mã giảm giá thành công";
+        $nt->save();
         return redirect()->route('admin.coupon.list');
     }
 
     public function Delete(Request $request)
     {
         $this->coupon->Delete($request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Xoá mã giảm giá thành công";
+        $nt->save();
         return redirect()->route('admin.coupon.list');
     }
 }

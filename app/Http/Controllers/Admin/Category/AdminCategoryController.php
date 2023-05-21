@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Category;
 
 use App\Http\Controllers\Controller;
 use App\Interface\Admin\CategoryInterface;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -49,6 +50,9 @@ class AdminCategoryController extends Controller
             'description' => $request->description
         ];
         $this->category->Create($data);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Thêm danh mục thành công";
+        $nt->save();
         return redirect()->route('admin.category.list');
     }
 
@@ -80,12 +84,18 @@ class AdminCategoryController extends Controller
             'description' => $request->description
         ];
         $this->category->Update($data,$request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Sửa danh mục thành công";
+        $nt->save();
         return redirect()->route('admin.category.list');
     }
 
     public function Delete(Request $request)
     {
         $this->category->Delete($request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Xoá danh mục thành công";
+        $nt->save();
         return redirect()->route('admin.category.list');
     }
 }

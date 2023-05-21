@@ -10,7 +10,7 @@
                             </a>
                         </div>
                         <ul class="header-top__infos pl-75 list-unstyled d-flex align-items-center mb-0">
-                            <li><a href="tel:91800458568"><i class="fas fa-phone-square"></i> 91 800 458 568</a></li>
+                            <li><a href="tel:0343862695"><i class="fas fa-phone-square"></i>0343862695</a></li>
                             <li><i class="fa fa-map-marker-alt"></i>{{!empty(session()->get('address'))?session()->get('address'):'Chưa có địa chỉ nào được chọn'}}</li>
                         </ul>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Address;
 
 use App\Http\Controllers\Controller;
 use App\Interface\Admin\AddressInterface;
+use App\Models\Notification;
 use App\Models\ProvinceOrder;
 use Illuminate\Http\Request;
 
@@ -42,6 +43,9 @@ class AdminAddressController extends Controller
             'address' => $request->address
         ];
         $this->address->Create($data);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Thêm địa chỉ thành công";
+        $nt->save();
         return redirect()->route('admin.address.list');
     }
 
@@ -66,12 +70,18 @@ class AdminAddressController extends Controller
             'address' => $request->address
         ];
         $this->address->Update($data,$request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Sửa địa chỉ thành công";
+        $nt->save();
         return redirect()->route('admin.address.list');
     }
 
     public function Delete(Request $request)
     {
         $this->address->Delete($request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Xoá địa chỉ thành công";
+        $nt->save();
         return redirect()->route('admin.address.list');
     }
 }

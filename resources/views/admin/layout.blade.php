@@ -127,7 +127,26 @@
 <!-- Plugins JS -->
 <script src="{{asset('admin/assets/js/sidebar-menu.js')}}"></script>
 <script src="{{asset('admin/assets/js/notify/bootstrap-notify.min.js')}}"></script>
-<script src="{{asset('admin/assets/js/notify/index.js')}}"></script>
+{{--<script src="{{asset('admin/assets/js/notify/index.js')}}"></script>--}}
+<script>
+    'use strict';
+    var notify = $.notify('<i class="fas fa-bell"></i></i><strong>Loading</strong> {{isset($newNoti->message)?$newNoti->message:''}}', {
+        type: 'theme',
+        allow_dismiss: true,
+        delay: 4000,
+        showProgressbar: true,
+        timer: 300,
+        // timer: 555555500,
+        animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+        }
+    });
+
+    {{--setTimeout(function () {--}}
+    {{--    notify.update('message', '<i class="fas fa-bell"></i></i><strong>{{'abcd'}}</strong> Inner Data.');--}}
+    {{--}, 1000);--}}
+</script>
 
 <!-- Apexchar js -->
 <script src="{{asset('admin/assets/js/chart/apex-chart/apex-chart1.js')}}"></script>

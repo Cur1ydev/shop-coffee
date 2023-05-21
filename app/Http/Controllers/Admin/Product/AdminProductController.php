@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Interface\Admin\ProductInterface;
 use App\Models\Category;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -57,6 +58,9 @@ class AdminProductController extends Controller
             'description' => $request->description,
         ];
         $this->product->Create($data);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Thêm sản phẩm thành công";
+        $nt->save();
         return redirect()->route('admin.product.list');
     }
     public function Update(Request $request){
@@ -95,10 +99,16 @@ class AdminProductController extends Controller
             'description' => $request->description,
         ];
         $this->product->Update($data,$request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Sửa sản phẩm thành công";
+        $nt->save();
         return redirect()->route('admin.product.list');
     }
     public function Delete(Request $request){
         $this->product->Delete($request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Xoá sản phẩm thành công";
+        $nt->save();
         return redirect()->route('admin.product.list');
     }
 }

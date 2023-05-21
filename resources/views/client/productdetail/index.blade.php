@@ -363,151 +363,30 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <h2 class="rp-title mb-30">
-                            Reletad Product
+                            các sản phẩm liên quan
                         </h2>
                     </div>
                 </div>
                 <div class="row mt-none-30">
+                    @foreach($relateProduct->product as $value)
                     <div class="col-xl-3 col-lg-6 col-md-6 mt-30">
                         <div class="pp__item pp__item--2 text-center pt-20 pb-20">
-                            <div class="pp__action pp__action--2 d-flex align-items-center justify-content-center">
-                                <div class="cart d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-shopping-basket"></i></a>
-                                </div>
-                                <div class="wishlist d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-heart"></i></a>
-                                </div>
-                                <div class="view d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-eye"></i></a>
-                                </div>
-                            </div>
+
                             <div class="pp__thumb pp__thumb--2 mt-35">
-                                <img class="default" src="{{asset('client/assets/images/products/shop/s-p-1.png')}}"
-                                     alt="">
-                                <img class="on-hover" src="{{asset('client/assets/images/products/shop/s-p-2.png')}}"
-                                     alt="">
+                                <img src="{{$value->image}}" alt="">
                             </div>
                             <div class="pp__content pp__content--2 mt-25">
-                                <div class="pp__c-top d-flex align-items-center justify-content-center">
-                                    <div class="pp__cat pp__cat--2">
-                                        <a href="#0">Rosted Coffee</a>
-                                    </div>
-                                </div>
                                 <h4 class="pp__title pp__title--2">
-                                    <a href="product-details.html">vicaragua Coffee Beans</a>
+                                    <a href="{{route('client.product',['slug'=> $value->slug])}}">{{$value->name}}</a>
                                 </h4>
                                 <div class="pp__price pp__price--2 d-flex align-items-center justify-content-center">
                                     <h6 class="label">Price - </h6>
-                                    <span class="price"> $325.00 / <span class="regular"><del>$348</del></span></span>
+                                    <span class="price">{{number_format($value->price)}}</span>đ
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 mt-30">
-                        <div class="pp__item pp__item--2 text-center pt-20 pb-20">
-                            <div class="pp__action pp__action--2 d-flex align-items-center justify-content-center">
-                                <div class="cart d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-shopping-basket"></i></a>
-                                </div>
-                                <div class="wishlist d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-heart"></i></a>
-                                </div>
-                                <div class="view d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-eye"></i></a>
-                                </div>
-                            </div>
-                            <div class="pp__thumb pp__thumb--2 mt-35">
-                                <img class="default" src="{{asset('client/assets/images/products/shop/s-p-2.png')}}"
-                                     alt="">
-                                <img class="on-hover" src="{{asset('client/assets/images/products/shop/s-p-3.png')}}"
-                                     alt="">
-                            </div>
-                            <div class="pp__content pp__content--2 mt-25">
-                                <div class="pp__c-top d-flex align-items-center justify-content-center">
-                                    <div class="pp__cat pp__cat--2">
-                                        <a href="#0">Rosted Coffee</a>
-                                    </div>
-                                </div>
-                                <h4 class="pp__title pp__title--2">
-                                    <a href="product-details.html">CAFFÈ LATTE</a>
-                                </h4>
-                                <div class="pp__price pp__price--2 d-flex align-items-center justify-content-center">
-                                    <h6 class="label">Price - </h6>
-                                    <span class="price"> $325.00 / <span class="regular"><del>$348</del></span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 mt-30">
-                        <div class="pp__item pp__item--2 text-center pt-20 pb-20">
-                            <div class="pp__action pp__action--2 d-flex align-items-center justify-content-center">
-                                <div class="cart d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-shopping-basket"></i></a>
-                                </div>
-                                <div class="wishlist d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-heart"></i></a>
-                                </div>
-                                <div class="view d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-eye"></i></a>
-                                </div>
-                            </div>
-                            <div class="pp__thumb pp__thumb--2 mt-35">
-                                <img class="default" src="{{asset('client/assets/images/products/shop/s-p-3.png')}}"
-                                     alt="">
-                                <img class="on-hover" src="{{asset('client/assets/images/products/shop/s-p-4.png')}}"
-                                     alt="">
-                            </div>
-                            <div class="pp__content pp__content--2 mt-25">
-                                <div class="pp__c-top d-flex align-items-center justify-content-center">
-                                    <div class="pp__cat pp__cat--2">
-                                        <a href="#0">Rosted Coffee</a>
-                                    </div>
-                                </div>
-                                <h4 class="pp__title pp__title--2">
-                                    <a href="product-details.html">JAPANIS COFFEE GRED</a>
-                                </h4>
-                                <div class="pp__price pp__price--2 d-flex align-items-center justify-content-center">
-                                    <h6 class="label">Price - </h6>
-                                    <span class="price"> $325.00 / <span class="regular"><del>$348</del></span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 mt-30">
-                        <div class="pp__item pp__item--2 text-center pt-20 pb-20">
-                            <div class="pp__action pp__action--2 d-flex align-items-center justify-content-center">
-                                <div class="cart d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-shopping-basket"></i></a>
-                                </div>
-                                <div class="wishlist d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-heart"></i></a>
-                                </div>
-                                <div class="view d-flex align-items-center justify-content-center">
-                                    <a href="#0"><i class="fal fa-eye"></i></a>
-                                </div>
-                            </div>
-                            <div class="pp__thumb pp__thumb--2 mt-35">
-                                <img class="default" src="{{asset('client/assets/images/products/shop/s-p-4.png')}}"
-                                     alt="">
-                                <img class="on-hover" src="{{asset('client/assets/images/products/shop/s-p-5.png')}}"
-                                     alt="">
-                            </div>
-                            <div class="pp__content pp__content--2 mt-25">
-                                <div class="pp__c-top d-flex align-items-center justify-content-center">
-                                    <div class="pp__cat pp__cat--2">
-                                        <a href="#0">Rosted Coffee</a>
-                                    </div>
-                                </div>
-                                <h4 class="pp__title pp__title--2">
-                                    <a href="product-details.html">AMERICANO COFFEE</a>
-                                </h4>
-                                <div class="pp__price pp__price--2 d-flex align-items-center justify-content-center">
-                                    <h6 class="label">Price - </h6>
-                                    <span class="price"> $325.00 / <span class="regular"><del>$348</del></span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -564,7 +443,7 @@
                         quantity: quantity
                     },
                     success: function (data) {
-                        alert(data.success);
+                        // alert(data.success);
                         // console.log(data.data)
                         window.location.href = '{{route('client.cart')}}';
                     },

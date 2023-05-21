@@ -22,6 +22,7 @@ class AttributeRepository implements AttributeInterface
         $attribute = new Attribute();
         $attribute->name = $data['name'];
         $attribute->value = $data['value'];
+        $attribute->price = $data['price'];
         return $attribute->save();
     }
 
@@ -29,7 +30,8 @@ class AttributeRepository implements AttributeInterface
     {
         return Attribute::find($id)->update([
             'name' => $data['name'],
-            'value' => $data['value']
+            'value' => $data['value'],
+            'price' => $data['price']
         ]);
     }
 

@@ -1,14 +1,5 @@
 @extends('client.layout')
 @section('content')
-    @if(session('deleteSuccess'))
-        <script>alert('{{session('deleteSuccess')}}')</script>
-    @endif
-    @if(session('deleteItem'))
-        <script>alert('{{session('deleteItem')}}')</script>
-    @endif
-    @if(session('addressSuccess'))
-        <script>alert('{{session('addressSuccess')}}')</script>
-    @endif
     <main>
         <!-- breadcrumb area start -->
         <section class="breadcrumb-area pt-140 pb-140 bg_img"

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\ProductAttribute;
 use App\Http\Controllers\Controller;
 use App\Interface\Admin\ProductAttributeInterface;
 use App\Models\Attribute;
+use App\Models\Notification;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 use Illuminate\Http\Request;
@@ -44,6 +45,9 @@ class AdminProductAttributeController extends Controller
             }
         }
         $this->productAttribute->Create($data);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Thêm sản phẩm và thuộc tính thành công";
+        $nt->save();
         return redirect()->route('admin.productattribute.list');
     }
 
@@ -82,6 +86,9 @@ class AdminProductAttributeController extends Controller
             }
         }
         $this->productAttribute->Update($data,$getid);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Sửa sản phẩm và thuộc tính thành công";
+        $nt->save();
         session()->forget('id');
         session()->save();
         return redirect()->route('admin.productattribute.list');
@@ -97,6 +104,9 @@ class AdminProductAttributeController extends Controller
         ];
         $getid= $this->productAttribute->GetById($id)->id;
         $this->productAttribute->Delete($getid);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Xoá sản phẩm và thuộc tính thành công";
+        $nt->save();
         return redirect()->route('admin.productattribute.list');
     }
 }

@@ -2,14 +2,15 @@
     <div class="header-wrapper m-0">
         <div class="header-logo-wrapper p-0">
             <div class="logo-wrapper">
-                <a href="index.html">
+                <a href="{{route('admin.dashboard')}}">
                     <img class="img-fluid main-logo" src="{{asset('admin/assets/images/logo/1.png')}}" alt="logo">
-                    <img class="img-fluid white-logo" src="{{asset('admin/assets/images/logo/1-white.png')}}" alt="logo">
+                    <img class="img-fluid white-logo" src="{{asset('admin/assets/images/logo/1-white.png')}}"
+                         alt="logo">
                 </a>
             </div>
             <div class="toggle-sidebar">
                 <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
-                <a href="index.html">
+                <a href="{{route('admin.dashboard')}}">
                     <img src="{{asset('admin/assets/images/logo/1.png')}}" class="img-fluid" alt="">
                 </a>
             </div>
@@ -40,39 +41,32 @@
                 <li class="onhover-dropdown">
                     <div class="notification-box">
                         <i class="ri-notification-line"></i>
-                        <span class="badge rounded-pill badge-theme">4</span>
+                        <span class="badge rounded-pill badge-theme">{{$countNoti>8?'8+':$countNoti}}</span>
                     </div>
                     <ul class="notification-dropdown onhover-show-div">
                         <li>
                             <i class="ri-notification-line"></i>
                             <h6 class="f-18 mb-0">Notitications</h6>
                         </li>
+                        @if($countNoti>0)
+                            @foreach($notification as $value)
+                                <li >
+                                    <p class="notification-message">
+                                        <i class="fa fa-circle me-2 font-primary"></i>{{$value->message}}<span
+                                            class="pull-right">{{$value->created_at}}</span>
+                                    </p>
+                                </li>
+                            @endforeach
+                        @else
+                            <li>
+                                <p align="center">
+                                    Hiện không có thông báo mới nào
+                                </p>
+                            </li>
+                        @endif
+
                         <li>
-                            <p>
-                                <i class="fa fa-circle me-2 font-primary"></i>Delivery processing <span
-                                    class="pull-right">10 min.</span>
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <i class="fa fa-circle me-2 font-success"></i>Order Complete<span
-                                    class="pull-right">1 hr</span>
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <i class="fa fa-circle me-2 font-info"></i>Tickets Generated<span
-                                    class="pull-right">3 hr</span>
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <i class="fa fa-circle me-2 font-danger"></i>Delivery Complete<span
-                                    class="pull-right">6 hr</span>
-                            </p>
-                        </li>
-                        <li>
-                            <a class="btn btn-primary" href="javascript:void(0)">Check all notification</a>
+                            <a class="btn btn-primary" href="{{route('admin.noti')}}">Check all notification</a>
                         </li>
                     </ul>
                 </li>
@@ -84,7 +78,8 @@
                 </li>
                 <li class="profile-nav onhover-dropdown pe-0 me-0">
                     <div class="media profile-media">
-                        <img class="user-profile rounded-circle" src="{{asset('admin/assets/images/users/4.jpg')}}" alt="">
+                        <img class="user-profile rounded-circle" src="{{asset('admin/assets/images/users/4.jpg')}}"
+                             alt="">
                         <div class="user-name-hide media-body">
                             <span>Emay Walter</span>
                             <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Province;
 use App\Http\Controllers\Controller;
 use App\Interface\Admin\ProvinceInterface;
 use App\Models\AddressOrder;
+use App\Models\Notification;
 use App\Models\ProvinceOrder;
 use Illuminate\Http\Request;
 
@@ -41,6 +42,9 @@ class AdminProvinceController extends Controller
             'name' => $request->name
         ];
         $this->province->Create($data);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Thêm tỉnh thành thành công";
+        $nt->save();
         return redirect()->route('admin.province.list');
     }
 
@@ -63,6 +67,9 @@ class AdminProvinceController extends Controller
             'name' => $request->name
         ];
         $this->province->Update($data, $request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Sửa tỉnh thành thành công";
+        $nt->save();
         return redirect()->route('admin.province.list');
     }
 
@@ -73,6 +80,9 @@ class AdminProvinceController extends Controller
             return back()->with('deleteError', 'Bạn sẽ không thể xoá được tỉnh này nếu chưa xoá hết địa chỉ liên quan');
         }
         $this->province->Delete($request->id);
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Xoá tỉnh thành thành công";
+        $nt->save();
         return redirect()->route('admin.province.list');
     }
 }

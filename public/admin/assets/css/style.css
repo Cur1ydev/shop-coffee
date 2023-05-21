@@ -8,7 +8,11 @@
 :root {
     --theme-color: #0da487
 }
-
+.notification-message {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 :root {
     --theme-color: #0da487
 }

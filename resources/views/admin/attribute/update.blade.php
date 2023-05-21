@@ -38,6 +38,16 @@
                                             <h5 style="color: red" align="center">{{$message}}</h5>
                                             @enderror
                                         </div>
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">Price</label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control" type="number" name="price"
+                                                       placeholder="Price" value="{{$findAttribute->price}}">
+                                            </div>
+                                            @error('price')
+                                            <h5 style="color: red" align="center">{{$message}}</h5>
+                                            @enderror
+                                        </div>
                                         <button class="btn ms-auto theme-bg-color text-white">Save</button>
                                         @csrf
                                     </form>

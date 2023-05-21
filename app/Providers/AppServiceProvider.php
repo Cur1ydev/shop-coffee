@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\View\Composer\NotificationComposer;
 use App\Interface\Admin\AddressInterface;
 use App\Interface\Admin\AttributeInterface;
 use App\Interface\Admin\CategoryInterface;
@@ -24,6 +25,7 @@ use App\Repository\Client\HomeRepository;
 use App\Repository\Client\MenuRepository;
 use App\Repository\Client\ProductDetailRepository;
 use App\Repository\Client\ShopRepository;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -54,6 +56,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('*',NotificationComposer::class);
     }
 }

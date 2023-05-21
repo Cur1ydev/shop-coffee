@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Dashboard\AdminDashboardController;
 use App\Http\Controllers\Admin\Product\AdminProductController;
 use App\Http\Controllers\Admin\Attribute\AdminAttributeController;
 use App\Http\Controllers\Admin\Category\AdminCategoryController;
@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\ProductAttribute\AdminProductAttributeController;
 use App\Http\Controllers\Admin\Coupon\AdminCouponController;
 use App\Http\Controllers\Admin\Province\AdminProvinceController;
 use App\Http\Controllers\Admin\Address\AdminAddressController;
-
+use App\Http\Controllers\Admin\OrderItem\AdminOrderItemController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,9 +84,14 @@ Route::get('/shop',[ClientShopController::class,'index'])->name('client.shop');
 Route::post('payment',[PaymentController::class,'handleApiVnpay'])->name('client.payment');
 Route::get('/order-success',[PaymentController::class,'handleVNpayReturn'])->name('client.handlePayment');
 Route::prefix('/adminn')->name('admin.')->group(function () {
-    Route::get('/', function () {
-        return view('admin.dashboard.index');
-    })->name('dashboard');
+    Route::get('/notification',function (){
+        return view('admin.notification.index');
+    })->name('noti');
+    Route::get('/deleteNoti',function (){
+        \App\Models\Notification::truncate();
+        return redirect()->route('admin.noti');
+    })->name('deleteNoti');
+    Route::get('/',[AdminDashboardController::class,'index'])->name('dashboard');
 //    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::prefix('/product')->name('product.')->group(function () {
         Route::get('/list', [AdminProductController::class, 'List'])->name('list');
@@ -143,5 +148,9 @@ Route::prefix('/adminn')->name('admin.')->group(function () {
         Route::get('/update-{id}', [AdminAddressController::class, 'Update'])->name('update');
         Route::post('/update-{id}', [AdminAddressController::class, 'UpdatePost'])->name('updatePost');
         Route::get('/delete-{id}', [AdminAddressController::class, 'Delete'])->name('delete');
+    });
+    Route::prefix('/order-item')->name('orderitem.')->group(function () {
+        Route::get('/list', [AdminOrderItemController::class, 'List'])->name('list');
+        Route::get('/delete-{id}', [AdminOrderItemController::class, 'Delete'])->name('delete');
     });
 });

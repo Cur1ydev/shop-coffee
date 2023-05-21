@@ -245,7 +245,7 @@
                         <div class="item d-flex align-items-center justify-content-center">
                             <img src="{{asset('client/assets/images/icons/ft-phone.png')}}" alt="">
                             <span>Phone :</span>
-                            <a href="tel:88019339702520">+88019 339 702 520</a>
+                            <a href="tel:88019339702520">+84 343862695</a>
                         </div>
                     </div>
                 </div>
@@ -253,15 +253,15 @@
                     <div class="footer__widget footer__info">
                         <div class="item d-flex align-items-center justify-content-start">
                             <img src="{{asset('client/assets/images/icons/ft-map-marker.png')}}" alt="">
-                            <span>Address :</span>
-                            <p>30 North West New</p>
+                            <span>Address : Trịnh Văn Bô,Nam Từ Liêm,Hà Nội,Việt Nam</span>
+{{--                            <p>Trịnh Văn Bô,Nam Từ Liêm,Hà Nội,Việt Nam</p>--}}
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-8 mt-30 pl-55">
                     <div class="footer__widget">
                         <div class="subscribe">
-                            <form action="https://xpressrow.com/html/cafena/cafena/index.html">
+                            <form action="">
                                 <input type="email" name="email" id="email" placeholder="Enter your email">
                                 <button type="submit" class="subscribe__btn">Subscribe <i class="fa fa-paper-plane"></i>
                                 </button>
