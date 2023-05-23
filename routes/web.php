@@ -27,6 +27,12 @@ use App\Http\Controllers\Admin\OrderItem\AdminOrderItemController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/abcd',function (){
+
+})->middleware('auth');
+
+
 Route::get('/about',function (){
     return view('client.about.index');
 })->name('client.about');
@@ -42,15 +48,7 @@ Route::get('/story',function (){
 Route::get('/blog',function (){
     return view('client.blog.index');
 })->name('client.blog');
-Route::get('abcd',function (){
-//    dd(session()->get('allPrice'));
-//    dd("LX-".rand(0,100000));
-    dd(session()->all());
-//    foreach (session()->get('cart') as $value){
-//        dd(json_encode($value['attribute'],JSON_UNESCAPED_UNICODE));
-//    }
-//    dd(\Carbon\Carbon::now()->subDay());
-});
+
 Route::get('/pushPrice',function (\Illuminate\Http\Request $request){
     session()->put('allPrice',$request->total);
     return response()->json(['success' => 'Thành công']);
