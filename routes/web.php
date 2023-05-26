@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Coupon\AdminCouponController;
 use App\Http\Controllers\Admin\Province\AdminProvinceController;
 use App\Http\Controllers\Admin\Address\AdminAddressController;
 use App\Http\Controllers\Admin\OrderItem\AdminOrderItemController;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,8 +32,7 @@ use App\Http\Controllers\Admin\OrderItem\AdminOrderItemController;
 Route::get('/abcd',function (){
 
 })->middleware('auth');
-
-
+Route::get('/test-mail',[MailController::class,'index']);
 Route::get('/about',function (){
     return view('client.about.index');
 })->name('client.about');
