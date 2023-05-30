@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\Province\AdminProvinceController;
 use App\Http\Controllers\Admin\Address\AdminAddressController;
 use App\Http\Controllers\Admin\OrderItem\AdminOrderItemController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +30,8 @@ use App\Http\Controllers\MailController;
 |
 */
 
-Route::get('/abcd',function (){
-
-})->middleware('auth');
+Route::get('/login',[LoginController::class,'index'])->name('login');
+Route::post('/login',[LoginController::class,'handleLogin'])->name('handleLogin');
 Route::get('/test-mail',[MailController::class,'index']);
 Route::get('/about',function (){
     return view('client.about.index');
