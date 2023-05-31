@@ -17,8 +17,11 @@ use App\Http\Controllers\Admin\Coupon\AdminCouponController;
 use App\Http\Controllers\Admin\Province\AdminProvinceController;
 use App\Http\Controllers\Admin\Address\AdminAddressController;
 use App\Http\Controllers\Admin\OrderItem\AdminOrderItemController;
+use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +32,11 @@ use App\Http\Controllers\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/register',[RegisterController::class,'index'])->name('register');
+Route::post('/register',[RegisterController::class,'handleRegister'])->name('handleRegister');
 Route::get('/login',[LoginController::class,'index'])->name('login');
 Route::post('/login',[LoginController::class,'handleLogin'])->name('handleLogin');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/test-mail',[MailController::class,'index']);
 Route::get('/about',function (){
     return view('client.about.index');
@@ -81,7 +86,7 @@ Route::get('/delSs' , [ClientCartController::class, 'DeleteAllSession'])->name('
 Route::get('/shop',[ClientShopController::class,'index'])->name('client.shop');
 Route::post('payment',[PaymentController::class,'handleApiVnpay'])->name('client.payment');
 Route::get('/order-success',[PaymentController::class,'handleVNpayReturn'])->name('client.handlePayment');
-Route::prefix('/adminn')->name('admin.')->group(function () {
+Route::prefix('/adminn')->middleware('login')->name('admin.')->group(function () {
     Route::get('/notification',function (){
         return view('admin.notification.index');
     })->name('noti');
@@ -150,5 +155,9 @@ Route::prefix('/adminn')->name('admin.')->group(function () {
     Route::prefix('/order-item')->name('orderitem.')->group(function () {
         Route::get('/list', [AdminOrderItemController::class, 'List'])->name('list');
         Route::get('/delete-{id}', [AdminOrderItemController::class, 'Delete'])->name('delete');
+    });
+    Route::prefix('/user')->name('user.')->group(function () {
+        Route::get('/list', [AdminUserController::class, 'List'])->name('list');
+        Route::get('/edit-role-{id}', [AdminUserController::class, 'EditRole'])->name('edit-role');
     });
 });

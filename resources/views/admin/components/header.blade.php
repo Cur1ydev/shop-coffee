@@ -78,38 +78,27 @@
                 </li>
                 <li class="profile-nav onhover-dropdown pe-0 me-0">
                     <div class="media profile-media">
-                        <img class="user-profile rounded-circle" src="{{asset('admin/assets/images/users/4.jpg')}}"
+                        <img class="user-profile rounded-circle" src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/348940991_580714300580843_1425709874505767428_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Jvh91TsdM_UAX9VtrH6&_nc_ht=scontent.fhan15-1.fna&oh=00_AfCEdE6GPVbzriYw9MAmCbgC0E8mrNFwliCKYrDwh5t4kQ&oe=647CA411"
                              alt="">
                         <div class="user-name-hide media-body">
-                            <span>Emay Walter</span>
+                            <span>{{isset(\Illuminate\Support\Facades\Auth::user()->name)?\Illuminate\Support\Facades\Auth::user()->name:''}}</span>
                             <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         <li>
-                            <a href="all-users.html">
+                            <a href="{{route('admin.user.list')}}">
                                 <i data-feather="users"></i>
                                 <span>Users</span>
                             </a>
                         </li>
                         <li>
-                            <a href="order-list.html">
+                            <a href="{{route('admin.orderitem.list')}}">
                                 <i data-feather="archive"></i>
                                 <span>Orders</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="support-ticket.html">
-                                <i data-feather="phone"></i>
-                                <span>Spports Tickets</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="profile-setting.html">
-                                <i data-feather="settings"></i>
-                                <span>Settings</span>
-                            </a>
-                        </li>
+
                         <li>
                             <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                href="javascript:void(0)">

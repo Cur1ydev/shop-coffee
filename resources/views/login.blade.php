@@ -110,6 +110,10 @@
                                             <button class="btn btn-primary ms-auto mt-4">Đăng nhập</button>
                                             @csrf
                                         </form>
+                                        @if(session('loginErrors'))
+                                            <h4>{{session('loginErrors')}}</h4>
+                                        @endif
+                                        <span>Chưa có tài khoản? <a href="{{route('register')}}">Đăng ký </a></span>
                                     </div>
                                 </div>
                             </div>
