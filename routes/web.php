@@ -32,69 +32,71 @@ use App\Http\Controllers\RegisterController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/register',[RegisterController::class,'index'])->name('register');
-Route::post('/register',[RegisterController::class,'handleRegister'])->name('handleRegister');
-Route::get('/login',[LoginController::class,'index'])->name('login');
-Route::post('/login',[LoginController::class,'handleLogin'])->name('handleLogin');
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-Route::get('/test-mail',[MailController::class,'index']);
-Route::get('/about',function (){
+
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'handleRegister'])->name('handleRegister');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'handleLogin'])->name('handleLogin');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/test-mail', [MailController::class, 'index']);
+Route::get('/about', function () {
     return view('client.about.index');
 })->name('client.about');
-Route::get('/contact',function (){
+Route::get('/contact', function () {
     return view('client.contact.index');
 })->name('client.contact');
-Route::get('/faq',function (){
+Route::get('/faq', function () {
     return view('client.faq.index');
 })->name('client.faq');
-Route::get('/story',function (){
+Route::get('/story', function () {
     return view('client.story.index');
 })->name('client.story');
-Route::get('/blog',function (){
+Route::get('/blog', function () {
     return view('client.blog.index');
 })->name('client.blog');
 
-Route::get('/pushPrice',function (\Illuminate\Http\Request $request){
-    session()->put('allPrice',$request->total);
+Route::get('/pushPrice', function (\Illuminate\Http\Request $request) {
+    session()->put('allPrice', $request->total);
     return response()->json(['success' => 'Thành công']);
 })->name('client.pushPrice');
-Route::get('/saveAddress',function (\Illuminate\Http\Request $request){
+Route::get('/saveAddress', function (\Illuminate\Http\Request $request) {
 //    session()->put('');
 //    dd($request->address);
     $rule = [
         'province' => 'required',
         'address' => 'required'
     ];
-    $mess=[
+    $mess = [
         'province.required' => 'Tỉnh thành phải được chọn',
         'address.required' => 'Địa chỉ phải được chọn'
     ];
-    $request->validate($rule,$mess);
-    session()->put('address',$request->address);
-    return back()->with('addressSuccess','Thêm địa chỉ đặt hàng thành công');
+    $request->validate($rule, $mess);
+    session()->put('address', $request->address);
+    return back()->with('addressSuccess', 'Thêm địa chỉ đặt hàng thành công');
 })->name('client.saveAddress');
-Route::get('/checkout',[ClientCheckoutController::class,'index'])->name('client.checkout');
+Route::get('/checkout', [ClientCheckoutController::class, 'index'])->name('client.checkout');
 Route::get('/', [ClientHomeController::class, 'index'])->name('client.home');
 Route::get('/menu', [ClientMenuController::class, 'Menu'])->name('client.menu');
 Route::get('/product/{slug}', [ClientProductDetailController::class, 'ProductDetail'])->name('client.product');
 Route::get('/cart', [ClientCartController::class, 'index'])->name('client.cart');
 Route::post('/cart', [ClientCartController::class, 'handleAddtocart'])->name('client.addtocart');
-Route::get('/selectAddress',[ClientCartController::class,'selectAddress'])->name('client.address');
-Route::get('/increaseQuantity',[ClientCartController::class,'increaseQuantity'])->name('client.increaseQuantity');
-Route::get('/deleteItemCart-{id}',[ClientCartController::class,'deleteItemCart'])->name('client.deleteItemCart');
-Route::get('/delSs' , [ClientCartController::class, 'DeleteAllSession'])->name('client.deleteSS');
-Route::get('/shop',[ClientShopController::class,'index'])->name('client.shop');
-Route::post('payment',[PaymentController::class,'handleApiVnpay'])->name('client.payment');
-Route::get('/order-success',[PaymentController::class,'handleVNpayReturn'])->name('client.handlePayment');
+Route::get('/selectAddress', [ClientCartController::class, 'selectAddress'])->name('client.address');
+Route::get('/increaseQuantity', [ClientCartController::class, 'increaseQuantity'])->name('client.increaseQuantity');
+Route::get('/deleteItemCart-{id}', [ClientCartController::class, 'deleteItemCart'])->name('client.deleteItemCart');
+Route::get('/delSs', [ClientCartController::class, 'DeleteAllSession'])->name('client.deleteSS');
+Route::get('/shop', [ClientShopController::class, 'index'])->name('client.shop');
+Route::post('payment', [PaymentController::class, 'handleApiVnpay'])->name('client.payment');
+Route::get('/order-success', [PaymentController::class, 'handleVNpayReturn'])->name('client.handlePayment');
 Route::prefix('/adminn')->middleware('login')->name('admin.')->group(function () {
-    Route::get('/notification',function (){
+    Route::get('/notification', function () {
         return view('admin.notification.index');
     })->name('noti');
-    Route::get('/deleteNoti',function (){
+    Route::get('/deleteNoti', function () {
         \App\Models\Notification::truncate();
         return redirect()->route('admin.noti');
     })->name('deleteNoti');
-    Route::get('/',[AdminDashboardController::class,'index'])->name('dashboard');
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 //    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::prefix('/product')->name('product.')->group(function () {
         Route::get('/list', [AdminProductController::class, 'List'])->name('list');
