@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin\Attribute;
 use App\Http\Controllers\Controller;
 use App\Interface\Admin\AttributeInterface;
 use App\Models\Notification;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AdminAttributeController extends Controller
 {
@@ -16,18 +18,18 @@ class AdminAttributeController extends Controller
         $this->attribute = $attribute;
     }
 
-    public function List()
+    public function List(): View
     {
         $List = $this->attribute->List();
         return view('admin.attribute.list', compact('List'));
     }
 
-    public function Add()
+    public function Add(): View
     {
         return view('admin.attribute.add');
     }
 
-    public function AddPost(Request $request)
+    public function AddPost(Request $request):RedirectResponse
     {
         $rule =
             [
@@ -78,7 +80,7 @@ class AdminAttributeController extends Controller
             'value' => $request->value,
             'price' => $request->price
         ];
-        $this->attribute->Update($data,$request->id);
+        $this->attribute->Update($data, $request->id);
         $nt = new  Notification();
         $nt->message = "Bạn đã Sửa thuộc tính thành công";
         $nt->save();

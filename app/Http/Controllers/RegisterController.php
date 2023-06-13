@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 
 class RegisterController extends Controller
 {
@@ -32,6 +34,7 @@ class RegisterController extends Controller
         $us->name = $request->username;
         $us->email = $request->email;
         $us->password = password_hash($request->password,PASSWORD_DEFAULT);
+        Mail::to("$request->email")->send(new WelcomeMail($us));
         $us->save();
         return back()->with('success','Đăng ký tài khoản thành công');
     }
