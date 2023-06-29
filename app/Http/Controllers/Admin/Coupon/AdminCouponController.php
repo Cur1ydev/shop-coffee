@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Coupon;
 
 use App\Http\Controllers\Controller;
 use App\Interface\Admin\CouponInterface;
+use App\Models\Coupon;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 
@@ -85,5 +86,24 @@ class AdminCouponController extends Controller
         $nt->message = "Bạn đã Xoá mã giảm giá thành công";
         $nt->save();
         return redirect()->route('admin.coupon.list');
+    }
+    public function trashed(){
+        $List = Coupon::onlyTrashed()->get();
+        return view('admin.coupon.list',compact('List'));
+    }
+    public function restore(Request $request){
+        Coupon::whereId($request->id)->restore();
+        $nt = new  Notification();
+        $nt->message = "Bạn đã Khôi phục mã giảm giá thành công";
+        $nt->save();
+        return back();
+    }
+    public function restoreAll(){
+        Coupon::onlyTrashed()->restore();
+        return back();
+    }
+    public function foreverDelete(Request $request){
+        Coupon::find($request->id)->forceDelete();
+        return back();
     }
 }

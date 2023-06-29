@@ -26,6 +26,8 @@
                                         <tr>
                                             <th>Hành Động</th>
                                             <th>Tên khách hang</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Tổng tiền</th>
                                             <th>Số điện thoại</th>
                                             <th>Ghi chú</th>
                                             <th>Mã đơn hàng</th>
@@ -36,7 +38,7 @@
                                             <th>Size,Topping tương ứng</th>
                                             <th>Giá</th>
                                             <th>Số lượng</th>
-                                            <th>Tổng tiền</th>
+
                                         </tr>
                                         </thead>
 
@@ -46,6 +48,8 @@
                                                 <td><a href="{{route('admin.orderitem.delete',['id' => $value->id])}}">Đã nhận sản phẩm</a>
                                                 </td>
                                                 <td>{{$value->username}}</td>
+                                                <td>{{$value->created_at}}</td>
+                                                <td class="td-price">{{number_format($value->total_price)}}đ</td>
                                                 <td>{{$value->phone_number}}</td>
                                                 <td>{{$value->note}}</td>
                                                 <td>{{$value->order_code}}</td>
@@ -75,7 +79,7 @@
                                                 <td class="td-price">{{number_format($value->price)}}đ</td>
 
                                                 <td>{{$value->quantity}}</td>
-                                                <td class="td-price">{{number_format($value->total_price)}}đ</td>
+
                                             </tr>
                                         @endforeach
                                         </tbody>

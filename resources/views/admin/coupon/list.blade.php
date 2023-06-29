@@ -20,6 +20,12 @@
                                             <a class="btn btn-solid" href="{{route('admin.coupon.add')}}">Thêm mã giảm
                                                 giá</a>
                                         </li>
+                                        <li>
+                                            <a class="btn btn-solid" href="{{route('admin.coupon.trash')}}">Danh sách đã xóa</a>
+                                        </li>
+                                        <li>
+                                            <a class="btn btn-solid" href="{{route('admin.coupon.restoreAll')}}">Khôi phục tất cả</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -55,6 +61,11 @@
                                                     <li>
                                                         <a href="{{route('admin.coupon.delete',['id'=>$value->id])}}">
                                                             <i class="ri-delete-bin-line"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{route('admin.coupon.restore',['id'=>$value->id])}}">
+                                                            Khôi phục
                                                         </a>
                                                     </li>
                                                 </ul>

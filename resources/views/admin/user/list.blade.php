@@ -27,7 +27,7 @@
                                             <td>{{$item->role==0?'Admin':'Guest'}}</td>
 
                                             <td>
-                                                @if($ownUser->name != $item->name)
+                                                @if($ownUser!="" &&$ownUser->name != $item->name && $item->name != 'admin')
                                                     <a href="{{route('admin.user.edit-role',['id' => $item->id])}}">Sửa
                                                         vai trò</a>
                                                 @endif

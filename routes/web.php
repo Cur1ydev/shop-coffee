@@ -186,6 +186,12 @@ Route::prefix('/adminn')->middleware('login')->name('admin.')->group(function ()
             ->name('updatePost');
         Route::get('/delete-{id}', [AdminCouponController::class, 'Delete'])
             ->name('delete');
+        Route::get('/trash',[AdminCouponController::class,'trashed'])
+            ->name('trash');
+        Route::get('/restore',[AdminCouponController::class,'restore'])
+            ->name('restore');
+        Route::get('/restore-all',[AdminCouponController::class,'restoreAll'])
+            ->name('restoreAll');
     });
     Route::prefix('/province')->name('province.')->group(function () {
         Route::get('/list', [AdminProvinceController::class, 'List'])
