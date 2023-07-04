@@ -10,7 +10,7 @@ class HomeRepository implements HomeInterface
 {
     public function ListProduct()
     {
-        return Product::all();
+        return Product::where('status',1)->get();
     }
     public function ListCategory()
     {
