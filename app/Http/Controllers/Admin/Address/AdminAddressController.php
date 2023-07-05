@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Interface\Admin\AddressInterface;
 use App\Models\Notification;
 use App\Models\ProvinceOrder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AdminAddressController extends Controller
 {
@@ -17,19 +19,19 @@ class AdminAddressController extends Controller
         $this->address = $address;
     }
 
-    public function List()
+    public function List(): View
     {
         $List = $this->address->List();
-        return view('admin.address.list',compact('List'));
+        return view('admin.address.list', compact('List'));
     }
 
-    public function Add()
+    public function Add(): View
     {
         $province = ProvinceOrder::all();
-        return view('admin.address.add',compact('province'));
+        return view('admin.address.add', compact('province'));
     }
 
-    public function AddPost(Request $request)
+    public function AddPost(Request $request): RedirectResponse
     {
         $rule = [
             'address' => 'required'
@@ -37,8 +39,8 @@ class AdminAddressController extends Controller
         $mess = [
             'address.required' => 'Địa chỉ bắt buộc phải nhập'
         ];
-        $request->validate($rule,$mess);
-        $data=[
+        $request->validate($rule, $mess);
+        $data = [
             'id_province_order' => $request->id_province_order,
             'address' => $request->address
         ];
@@ -49,14 +51,14 @@ class AdminAddressController extends Controller
         return redirect()->route('admin.address.list');
     }
 
-    public function Update(Request $request)
+    public function Update(Request $request): View
     {
         $province = ProvinceOrder::all();
-        $find= $this->address->GetById($request->id);
-        return view('admin.address.update',compact('find','province'));
+        $find = $this->address->GetById($request->id);
+        return view('admin.address.update', compact('find', 'province'));
     }
 
-    public function UpdatePost(Request $request)
+    public function UpdatePost(Request $request): RedirectResponse
     {
         $rule = [
             'address' => 'required'
@@ -64,12 +66,12 @@ class AdminAddressController extends Controller
         $mess = [
             'address.required' => 'Địa chỉ bắt buộc phải nhập'
         ];
-        $request->validate($rule,$mess);
-        $data=[
+        $request->validate($rule, $mess);
+        $data = [
             'id_province_order' => $request->id_province_order,
             'address' => $request->address
         ];
-        $this->address->Update($data,$request->id);
+        $this->address->Update($data, $request->id);
         $nt = new  Notification();
         $nt->message = "Bạn đã Sửa địa chỉ thành công";
         $nt->save();

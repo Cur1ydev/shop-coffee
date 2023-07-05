@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AddressOrder extends Model
 {
@@ -15,7 +16,7 @@ class AddressOrder extends Model
         'address'
     ];
 
-    public function provinceOrder()
+    public function provinceOrder(): BelongsTo
     {
         return $this->belongsTo(ProvinceOrder::class, 'id_province_order');
     }

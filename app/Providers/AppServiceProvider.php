@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Http\View\Composer\NotificationComposer;
 use App\Interface\Admin\AddressInterface;
 use App\Interface\Admin\AttributeInterface;
+use App\Interface\Admin\BannerInterface;
 use App\Interface\Admin\CategoryInterface;
 use App\Interface\Admin\CouponInterface;
 use App\Interface\Admin\ProductAttributeInterface;
@@ -16,6 +17,7 @@ use App\Interface\Client\ProductDetailInterface;
 use App\Interface\Client\ShopInterface;
 use App\Repository\Admin\AddressRepository;
 use App\Repository\Admin\AttributeRepository;
+use App\Repository\Admin\BannerRepository;
 use App\Repository\Admin\CategoryRepository;
 use App\Repository\Admin\CouponRepository;
 use App\Repository\Admin\ProductAttributeRepository;
@@ -39,16 +41,17 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProductInterface::class, ProductRepository::class);
         $this->app->bind(AttributeInterface::class, AttributeRepository::class);
         $this->app->bind(CategoryInterface::class, CategoryRepository::class);
-        $this->app->bind(ProductAttributeInterface::class,ProductAttributeRepository::class);
-        $this->app->bind(CouponInterface::class,CouponRepository::class);
-        $this->app->bind(ProvinceInterface::class,ProvinceRepository::class);
-        $this->app->bind(AddressInterface::class,AddressRepository::class);
+        $this->app->bind(ProductAttributeInterface::class, ProductAttributeRepository::class);
+        $this->app->bind(CouponInterface::class, CouponRepository::class);
+        $this->app->bind(ProvinceInterface::class, ProvinceRepository::class);
+        $this->app->bind(AddressInterface::class, AddressRepository::class);
+        $this->app->bind(BannerInterface::class, BannerRepository::class);
 
         //Client
         $this->app->bind(HomeInterface::class, HomeRepository::class);
         $this->app->bind(MenuInterface::class, MenuRepository::class);
-        $this->app->bind(ProductDetailInterface::class,ProductDetailRepository::class);
-        $this->app->bind(ShopInterface::class,ShopRepository::class);
+        $this->app->bind(ProductDetailInterface::class, ProductDetailRepository::class);
+        $this->app->bind(ShopInterface::class, ShopRepository::class);
     }
 
     /**
@@ -56,6 +59,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('*',NotificationComposer::class);
+        View::composer('*', NotificationComposer::class);
     }
 }

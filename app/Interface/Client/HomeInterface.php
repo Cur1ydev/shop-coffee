@@ -6,4 +6,5 @@ interface HomeInterface
 {
     public function ListProduct();
     public function ListCategory();
+    public function ListBanner();
 }

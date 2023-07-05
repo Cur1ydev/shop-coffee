@@ -264,7 +264,7 @@
                 })
             })
             const coupon = $('#coupon').text().replace(/,/g, '')
-            const total = parseInt(allTotal) - parseInt(coupon)
+            const total = parseInt(allTotal) - parseInt(coupon) < 0 ? 0 : parseInt(allTotal) - parseInt(coupon)
             document.querySelector('#total').innerHTML = total.toLocaleString() + "đ"
             $('#checkout').click(function () {
                 $.ajax({

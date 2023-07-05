@@ -1,3 +1,48 @@
+<!-- preloader  -->
+<div id="preloader">
+    <div id="ctn-preloader" class="ctn-preloader">
+        <div class="animation-preloader">
+            <div class="spinner"></div>
+            <div class="txt-loading">
+                    <span data-text-preloader="C" class="letters-loading">
+                        C
+                    </span>
+                <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                <span data-text-preloader="F" class="letters-loading">
+                        F
+                    </span>
+                <span data-text-preloader="E" class="letters-loading">
+                        E
+                    </span>
+                <span data-text-preloader="N" class="letters-loading">
+                        N
+                    </span>
+                <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="row">
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- preloader end -->
 <header class="site-header">
     <div class="header-top header-top__2">
         <div class="container-fluid custom-width">
@@ -56,6 +101,8 @@
                                 </li>
                                 <li><a href="{{route('client.about')}}">About</a></li>
                                 <li><a href="{{route('client.contact')}}">Contact</a></li>
+                                <li><a href="{{route('login')}}">Login</a></li>
+                                <li><a href="{{route('register')}}">Register</a></li>
                             </ul>
                         </nav>
                     </div>

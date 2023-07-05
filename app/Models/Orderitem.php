@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use function Termwind\renderUsing;
 
 class Orderitem extends Model
 {
-    use HasFactory;
-    protected $table='orderitem';
-    protected $fillable=[
+    use HasFactory,SoftDeletes;
+
+    protected $table = 'orderitem';
+    protected $fillable = [
         'order_code',
         'coupon',
         'product_id',
@@ -24,10 +27,14 @@ class Orderitem extends Model
         'phone_number',
         'note'
     ];
-    public function product(){
+
+    public function product(): BelongsTo
+    {
         return $this->belongsTo(Product::class);
     }
-    public function status(){
-        return $this->belongsTo(Status::class,'status_id');
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class, 'status_id');
     }
 }
