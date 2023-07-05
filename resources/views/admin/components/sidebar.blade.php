@@ -82,6 +82,21 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-list">
+                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i class="ri-list-settings-line"></i>
+                            <span>Banner</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="{{route('admin.banner.list')}}">Banner</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('admin.banner.add')}}">Add Banner</a>
+                            </li>
+                        </ul>
+                    </li>
 
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="javascript:void(0)">

@@ -19,10 +19,14 @@
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-5">
-                        <div class="hero__thumb hero__thumb--2 position-relative">
-                            <img src="{{asset('client/assets/images/hero/hero-img-2-1.png')}}" alt="img">
-                            <a href="http://www.youtube.com/embed/4xe72U7mXNg?rel=0&amp;controls=0&amp;showinfo=0" data-rel="lightcase:myCollection" data-animation="fadeInLeft" class="video-btn video-btn__2 d-flex align-items-center"><i class="fas fa-play"></i><span class="border-effect">play video</span></a>
-                        </div>
+                        @foreach($banner as $item)
+                            <div class="hero__thumb hero__thumb--2 position-relative image-banner">
+                                <img src="{{$item->image}}" alt="img">
+                                <a href="http://www.youtube.com/embed/4xe72U7mXNg?rel=0&amp;controls=0&amp;showinfo=0" data-rel="lightcase:myCollection" data-animation="fadeInLeft" class="video-btn video-btn__2 d-flex align-items-center"><i class="fas fa-play"></i><span class="border-effect">play video</span></a>
+                            </div>
+                        @endforeach
+
+
                     </div>
                 </div>
             </div>

@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Coupon\AdminCouponController;
 use App\Http\Controllers\Admin\Province\AdminProvinceController;
 use App\Http\Controllers\Admin\Address\AdminAddressController;
 use App\Http\Controllers\Admin\OrderItem\AdminOrderItemController;
+use App\Http\Controllers\Admin\Banner\AdminBannerController;
 use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\LoginController;
@@ -233,4 +234,20 @@ Route::prefix('/adminn')->middleware('login')->name('admin.')->group(function ()
         Route::get('/edit-role-{id}', [AdminUserController::class, 'EditRole'])
             ->name('edit-role');
     });
+    Route::prefix('/banner')->name('banner.')->group(function () {
+        Route::get('/list', [AdminBannerController::class, 'List'])
+            ->name('list');
+        Route::get('/add', [AdminBannerController::class, 'Add'])
+            ->name('add');
+        Route::post('/add', [AdminBannerController::class, 'AddPost'])
+            ->name('addPost');
+        Route::get('/update-{id}', [AdminBannerController::class, 'Update'])
+            ->name('update');
+        Route::post('/update-{id}', [AdminBannerController::class, 'UpdatePost'])
+            ->name('updatePost');
+        Route::get('/delete-{id}', [AdminBannerController::class, 'Delete'])
+            ->name('delete');
+    });
 });
+
+
