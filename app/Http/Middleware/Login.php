@@ -17,7 +17,7 @@ class Login
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if ($user && $user->role !=0){
+        if (!$user || $user->role != 0) {
             return redirect()->route('login');
         }
         return $next($request);

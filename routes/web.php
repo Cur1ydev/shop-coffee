@@ -45,6 +45,10 @@ Route::post('/login', [LoginController::class, 'handleLogin'])
     ->name('handleLogin');
 Route::get('/logout', [LoginController::class, 'logout'])
     ->name('logout');
+Route::get('google', [LoginController::class, 'googleLogin'])
+    ->name('google');
+Route::get('google/callback', [LoginController::class, 'callback'])
+    ->name('callback');
 Route::get('/test-mail', [MailController::class, 'index']);
 Route::get('/about', function () {
     return view('client.about.index');
@@ -108,6 +112,7 @@ Route::post('payment', [PaymentController::class, 'handleApiVnpay'])
     ->name('client.payment');
 Route::get('/order-success', [PaymentController::class, 'handleVNpayReturn'])
     ->name('client.handlePayment');
+
 Route::prefix('/adminn')->middleware('login')->name('admin.')->group(function () {
     Route::get('/notification', function () {
         return view('admin.notification.index');
@@ -187,11 +192,11 @@ Route::prefix('/adminn')->middleware('login')->name('admin.')->group(function ()
             ->name('updatePost');
         Route::get('/delete-{id}', [AdminCouponController::class, 'Delete'])
             ->name('delete');
-        Route::get('/trash',[AdminCouponController::class,'trashed'])
+        Route::get('/trash', [AdminCouponController::class, 'trashed'])
             ->name('trash');
-        Route::get('/restore',[AdminCouponController::class,'restore'])
+        Route::get('/restore', [AdminCouponController::class, 'restore'])
             ->name('restore');
-        Route::get('/restore-all',[AdminCouponController::class,'restoreAll'])
+        Route::get('/restore-all', [AdminCouponController::class, 'restoreAll'])
             ->name('restoreAll');
     });
     Route::prefix('/province')->name('province.')->group(function () {

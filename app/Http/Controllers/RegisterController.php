@@ -34,7 +34,13 @@ class RegisterController extends Controller
         $us->name = $request->username;
         $us->email = $request->email;
         $us->password = password_hash($request->password,PASSWORD_DEFAULT);
-//        Mail::to("$request->email")->send(new WelcomeMail($us));
+//        dd($us);
+        $mail=[
+            'title' => "Xin chào $request->username",
+            'body' => "Cảm ơn bạn đã đăng ký tài khoản trên website của Lợi Xoăn Coffee,vui lòng bạn đăng nhập với tài khoản mà bạn đã đăng
+    ký trên website."
+        ];
+        Mail::to("loixoan28.07@gmail.com")->send(new WelcomeMail($mail));
         $us->save();
         return back()->with('success','Đăng ký tài khoản thành công');
     }
