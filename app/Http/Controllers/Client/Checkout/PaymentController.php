@@ -129,7 +129,7 @@ class PaymentController extends Controller
                 $orderItem->attribute = json_encode($value['attribute'], JSON_UNESCAPED_UNICODE);
                 $orderItem->price = $value['price'];
                 $orderItem->quantity = $value['quantity'];
-                $orderItem->total_price = $value['quantity'] * $value['price'];
+                $orderItem->total_price = session()->get('allPrice');
                 $orderItem->address = session()->get('address');
                 $orderItem->username = session()->get('username');
                 $orderItem->phone_number = session()->get('phone_number');

@@ -8,9 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-<h3>Xin chào {{$mail->name}}</h3>
-<p>Cảm ơn bạn đã đăng ký tài khoản trên website của Lợi Xoăn Coffee,vui lòng bạn đăng nhập với tài khoản mà bạn đã đăng
-    ký trên website.</p>
+<h3>Xin chào {{$mail['title']}}</h3>
+<p>{{$mail['body']}}</p>
 <p>Xin cảm ơn !</p>
 </body>
 </html>

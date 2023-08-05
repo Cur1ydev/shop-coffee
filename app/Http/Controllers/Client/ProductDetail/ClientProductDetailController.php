@@ -20,6 +20,7 @@ class ClientProductDetailController extends Controller
     {
         $getAll = $this->productDetail->GetAllProductAttribute($request->slug);
         $relateProduct = Category::where('id',$getAll->category_id)->with('product')->first();
+//        dd($getAll);
         return view('client.productdetail.index', compact('getAll','relateProduct'));
     }
 }
