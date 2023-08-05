@@ -34,6 +34,7 @@ class RegisterController extends Controller
         $us->name = $request->username;
         $us->email = $request->email;
         $us->password = password_hash($request->password,PASSWORD_DEFAULT);
+        $us->google_id = 0;
 //        dd($us);
         $mail=[
             'title' => "Xin chào $request->username",

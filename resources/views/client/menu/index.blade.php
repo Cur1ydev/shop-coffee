@@ -12,7 +12,7 @@
                         <div class="cafena-breadcrumb breadcrumbs">
                             <ul class="list-unstyled d-flex align-items-center justify-content-center">
                                 <li class="cafenabcrumb-item duxinbcrumb-begin">
-                                    <a href="index.html"><span>Home</span></a>
+                                    <a href="{{route('client.home')}}"><span>Home</span></a>
                                 </li>
                                 <li class="cafenabcrumb-item duxinbcrumb-end">
                                     <span>menu</span>

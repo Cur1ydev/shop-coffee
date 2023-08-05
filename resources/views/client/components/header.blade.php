@@ -101,19 +101,33 @@
                                 </li>
                                 <li><a href="{{route('client.about')}}">About</a></li>
                                 <li><a href="{{route('client.contact')}}">Contact</a></li>
-                                <li><a href="{{route('login')}}">Login</a></li>
-                                <li><a href="{{route('register')}}">Register</a></li>
+
                             </ul>
                         </nav>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-6 align-self-center">
                     <div class="menu-area__right menu-area__right--2 d-flex justify-content-end align-items-center">
-                        <div class="search">
-                            <div class="search__trigger item">
-                                <span class="close"><i class="fal fa-times"></i></span>
+
+                        @if(auth()->user() && auth()->user()->role == 1)
+                            <div class="main-menu main-menu__2">
+                                <nav id="mobile-menu">
+                                    <ul>
+                                        <li><a>Xin chào {{\Illuminate\Support\Str::limit(auth()->user()->name,5,'...')}}</a></li>
+                                        <li><a href="{{route('logout')}}">Đăng xuất</a></li>
+                                    </ul>
+                                </nav>
                             </div>
-                        </div>
+                        @else
+                            <div class="main-menu main-menu__2">
+                                <nav id="mobile-menu">
+                                    <ul>
+                                        <li><a href="{{route('login')}}">Đăng nhập</a></li>
+                                        <li><a href="{{route('register')}}">Đăng ký</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        @endif
                         <div class="hamburger-trigger item">
                             <i class="far fa-bars"></i>
                         </div>
